@@ -12,7 +12,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Exo+2:wght@100;200;300;400;500;600;700;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&family=Exo+2:wght@300;400;500;600;700;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -30,8 +30,8 @@
             --glass: rgba(255, 255, 255, 0.04);
             --glass-border: rgba(255, 255, 255, 0.15);
             --text-primary: #FFFFFF;
-            --text-secondary: rgba(255, 255, 255, 0.7);
-            --text-dim: rgba(255, 255, 255, 0.4);
+            --text-secondary: rgba(255, 255, 255, 0.85);
+            --text-dim: rgba(255, 255, 255, 0.5);
             --glow-blue: 0 0 20px rgba(77, 168, 218, 0.5), 0 0 40px rgba(77, 168, 218, 0.2);
             --glow-white: 0 0 20px rgba(255, 255, 255, 0.4), 0 0 40px rgba(255, 255, 255, 0.15);
             --glow-ice: 0 0 20px rgba(127, 181, 232, 0.5), 0 0 40px rgba(127, 181, 232, 0.2);
@@ -42,12 +42,14 @@
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Rajdhani', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             background: var(--deep-blue);
             color: var(--text-primary);
             overflow-x: hidden;
-            line-height: 1.6;
+            line-height: 1.7;
             cursor: default;
+            font-size: 18px;
+            font-weight: 500;
         }
 
         ::selection {
@@ -60,6 +62,30 @@
         ::-webkit-scrollbar-thumb {
             background: linear-gradient(180deg, var(--white), var(--sky-blue));
             border-radius: 3px;
+        }
+
+        /* ============================================
+           PAGE SYSTEM - Each section is a "page"
+        ============================================ */
+        .page {
+            display: none;
+            min-height: 100vh;
+            position: relative;
+            padding-top: 100px;
+            animation: pageFadeIn 0.6s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .page#home {
+            padding-top: 0;
+        }
+
+        @keyframes pageFadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* ============================================
@@ -113,9 +139,9 @@
 
         .preloader-text {
             margin-top: 40px;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.8rem;
-            letter-spacing: 6px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 8px;
             color: var(--white);
             text-transform: uppercase;
             animation: textFlicker 2s infinite;
@@ -163,7 +189,7 @@
             height: 2px;
             background: linear-gradient(90deg, var(--white), var(--sky-blue), var(--ice-blue));
             z-index: 10001;
-            transition: width 0.1s linear;
+            width: 0;
             box-shadow: var(--glow-white);
         }
 
@@ -202,6 +228,7 @@
             gap: 14px;
             text-decoration: none;
             z-index: 1001;
+            cursor: pointer;
         }
 
         .logo-3d {
@@ -237,19 +264,19 @@
         .logo-face:nth-child(4) { transform: rotateY(-90deg) translateZ(24px); }
 
         .nav-logo-text {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 700;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 400;
             color: white;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            min-width: 240px;
+            min-width: 280px;
             position: relative;
         }
 
         .nav-logo-text .typing-text {
             display: inline-block;
-            border-right: 2px solid var(--sky-blue);
+            border-right: 3px solid var(--sky-blue);
             padding-right: 4px;
             animation: cursorBlink 0.8s step-end infinite;
             white-space: nowrap;
@@ -264,7 +291,7 @@
         .nav-logo-text span {
             display: block;
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.6rem;
+            font-size: 0.7rem;
             color: var(--ice-blue);
             letter-spacing: 3px;
             font-weight: 400;
@@ -281,14 +308,15 @@
         .nav-links a {
             text-decoration: none;
             color: var(--text-secondary);
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
             letter-spacing: 1.5px;
             text-transform: uppercase;
             transition: all 0.3s ease;
             position: relative;
             padding: 4px 0;
+            cursor: pointer;
         }
 
         .nav-links a::before {
@@ -297,18 +325,20 @@
             bottom: 0;
             left: 0;
             width: 0;
-            height: 1px;
+            height: 2px;
             background: var(--white);
             transition: width 0.3s ease;
             box-shadow: var(--glow-white);
         }
 
-        .nav-links a:hover {
+        .nav-links a:hover,
+        .nav-links a.active-link {
             color: var(--white);
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
 
-        .nav-links a:hover::before { width: 100%; }
+        .nav-links a:hover::before,
+        .nav-links a.active-link::before { width: 100%; }
 
         .nav-cta {
             padding: 12px 26px;
@@ -316,9 +346,9 @@
             color: var(--deep-blue);
             border: none;
             border-radius: 6px;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 800;
             letter-spacing: 2px;
             text-transform: uppercase;
             cursor: pointer;
@@ -389,12 +419,13 @@
         .mobile-menu a {
             text-decoration: none;
             color: var(--text-secondary);
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 600;
-            letter-spacing: 3px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            letter-spacing: 4px;
             text-transform: uppercase;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .mobile-menu a:hover {
@@ -416,7 +447,6 @@
             background: radial-gradient(ellipse at center, var(--deep-blue-mid) 0%, var(--deep-blue) 50%, var(--deep-blue-dark) 100%);
         }
 
-        /* Grid Floor */
         .hero-grid {
             position: absolute;
             bottom: 0;
@@ -438,7 +468,6 @@
             100% { background-position: 0 60px; }
         }
 
-        /* Floating Orbs */
         .orb {
             position: absolute;
             border-radius: 50%;
@@ -453,7 +482,6 @@
             background: var(--sky-blue);
             top: 10%;
             left: -5%;
-            animation-delay: 0s;
         }
 
         .orb-2 {
@@ -482,7 +510,6 @@
             66% { transform: translate(-20px, 20px) scale(0.9); }
         }
 
-        /* Particles */
         .particles-container {
             position: absolute;
             inset: 0;
@@ -506,7 +533,6 @@
             100% { transform: translateY(-100px) translateX(50px); opacity: 0; }
         }
 
-        /* Scan Lines */
         .scanlines {
             position: absolute;
             inset: 0;
@@ -525,7 +551,7 @@
             position: relative;
             z-index: 10;
             text-align: center;
-            max-width: 1000px;
+            max-width: 1100px;
             padding: 0 30px;
         }
 
@@ -533,11 +559,11 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            padding: 8px 24px;
+            padding: 10px 28px;
             border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 50px;
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.75rem;
+            font-size: 0.9rem;
             letter-spacing: 4px;
             text-transform: uppercase;
             color: var(--white);
@@ -548,8 +574,8 @@
 
         .hero-tag::before {
             content: '';
-            width: 6px;
-            height: 6px;
+            width: 8px;
+            height: 8px;
             background: var(--sky-blue);
             border-radius: 50%;
             box-shadow: 0 0 10px var(--sky-blue);
@@ -562,19 +588,20 @@
         }
 
         .hero h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(2rem, 5.5vw, 4.5rem);
-            font-weight: 800;
-            line-height: 1.15;
-            margin-bottom: 24px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.8rem, 7vw, 6rem);
+            font-weight: 400;
+            line-height: 1.05;
+            margin-bottom: 28px;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             animation: fadeInUp 1s ease 0.6s both;
         }
 
         .hero h1 .line-1 {
             display: block;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 2px 20px rgba(255, 255, 255, 0.3);
         }
 
         .hero h1 .line-2 {
@@ -587,13 +614,13 @@
         }
 
         .hero-subtitle {
-            font-family: 'Rajdhani', sans-serif;
-            font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.1rem, 1.8vw, 1.35rem);
             color: var(--text-secondary);
-            max-width: 700px;
+            max-width: 800px;
             margin: 0 auto 40px;
             line-height: 1.8;
-            font-weight: 300;
+            font-weight: 500;
             animation: fadeInUp 1s ease 0.9s both;
         }
 
@@ -601,18 +628,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 20px;
+            gap: 24px;
             flex-wrap: wrap;
             animation: fadeInUp 1s ease 1.2s both;
         }
 
         /* 3D Buttons */
         .btn-3d {
-            padding: 16px 40px;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 3px;
+            padding: 18px 44px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 800;
+            letter-spacing: 2px;
             text-transform: uppercase;
             text-decoration: none;
             border: none;
@@ -739,60 +766,19 @@
             transform: translateX(-50%);
         }
 
-        /* Scroll Indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            animation: fadeInUp 1s ease 2s both;
-            z-index: 10;
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .scroll-indicator span {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.65rem;
-            letter-spacing: 4px;
-            color: var(--text-dim);
-            text-transform: uppercase;
-        }
-
-        .scroll-line {
-            width: 1px;
-            height: 40px;
-            background: linear-gradient(180deg, var(--white), transparent);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .scroll-line::after {
-            content: '';
-            position: absolute;
-            top: -100%;
-            left: 0;
-            width: 100%;
-            height: 50%;
-            background: var(--sky-blue);
-            animation: scrollLineAnim 2s ease-in-out infinite;
-        }
-
-        @keyframes scrollLineAnim {
-            0% { top: -50%; }
-            100% { top: 150%; }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-40px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* ============================================
            SECTION STYLES
         ============================================ */
-        section {
-            padding: 120px 0;
-            position: relative;
-        }
-
         .container {
             max-width: 1300px;
             margin: 0 auto;
@@ -809,11 +795,12 @@
             align-items: center;
             gap: 10px;
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.7rem;
+            font-size: 0.85rem;
             letter-spacing: 5px;
             text-transform: uppercase;
             color: var(--sky-blue);
             margin-bottom: 16px;
+            font-weight: 600;
         }
 
         .section-tag::before,
@@ -829,13 +816,13 @@
         }
 
         .section-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(1.8rem, 4vw, 3rem);
-            font-weight: 800;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 400;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            line-height: 1.2;
-            margin-bottom: 16px;
+            letter-spacing: 3px;
+            line-height: 1.1;
+            margin-bottom: 20px;
         }
 
         .section-title .highlight {
@@ -846,22 +833,24 @@
         }
 
         .section-subtitle {
-            font-size: 1.05rem;
+            font-size: 1.15rem;
             color: var(--text-secondary);
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
-            font-weight: 300;
+            font-weight: 500;
+            line-height: 1.8;
         }
 
         /* ============================================
            ABOUT SECTION
         ============================================ */
-        .about {
+        .about-page {
             background: var(--deep-blue-dark);
             position: relative;
+            padding: 120px 0 100px;
         }
 
-        .about::before {
+        .about-page::before {
             content: '';
             position: absolute;
             top: 0;
@@ -895,9 +884,7 @@
             transition: transform 0.5s ease;
         }
 
-        .about-image:hover {
-            transform: rotateY(0deg);
-        }
+        .about-image:hover { transform: rotateY(0deg); }
 
         .about-image-placeholder {
             width: 100%;
@@ -916,8 +903,8 @@
             overflow: hidden;
         }
 
-        /* Water Ripple Effect - representing "The Well" */
-        .about-image-placeholder::before {
+        .about-image-placeholder::before,
+        .about-image-placeholder::after {
             content: '';
             position: absolute;
             bottom: 20%;
@@ -931,43 +918,27 @@
         }
 
         .about-image-placeholder::after {
-            content: '';
-            position: absolute;
-            bottom: 20%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
             border: 1px solid rgba(127, 181, 232, 0.2);
-            animation: waterRipple 4s ease-out infinite 2s;
+            animation-delay: 2s;
         }
 
         @keyframes waterRipple {
-            0% {
-                width: 50px;
-                height: 50px;
-                opacity: 1;
-            }
-            100% {
-                width: 400px;
-                height: 400px;
-                opacity: 0;
-            }
+            0% { width: 50px; height: 50px; opacity: 1; }
+            100% { width: 400px; height: 400px; opacity: 0; }
         }
 
         .about-image-placeholder .cross-icon {
-            font-size: 4rem;
-            margin-bottom: 16px;
+            font-size: 5rem;
+            margin-bottom: 20px;
             filter: drop-shadow(0 0 20px var(--white));
             position: relative;
             z-index: 2;
         }
 
         .about-image-placeholder p {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.85rem;
-            letter-spacing: 2px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.4rem;
+            letter-spacing: 3px;
             color: var(--text-secondary);
             position: relative;
             z-index: 2;
@@ -975,7 +946,7 @@
 
         .about-image-placeholder small {
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.7rem;
+            font-size: 0.85rem;
             color: var(--ice-blue);
             letter-spacing: 2px;
             position: relative;
@@ -1016,63 +987,64 @@
         }
 
         .about-floating-card .icon {
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             background: linear-gradient(135deg, var(--white), var(--ice-blue));
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.1rem;
+            font-size: 1.3rem;
             box-shadow:
                 0 4px 0 var(--deep-blue-light),
                 0 6px 15px rgba(255, 255, 255, 0.2);
         }
 
         .about-floating-card .text {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 800;
             letter-spacing: 1px;
         }
 
         .about-floating-card .text span {
             display: block;
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.6rem;
+            font-size: 0.75rem;
             color: var(--text-dim);
             font-weight: 400;
             letter-spacing: 2px;
         }
 
         .about-content h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 20px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.8rem;
+            margin-bottom: 24px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
         }
 
         .about-content p {
             color: var(--text-secondary);
-            margin-bottom: 16px;
+            margin-bottom: 20px;
             line-height: 1.9;
-            font-size: 1rem;
+            font-size: 1.1rem;
+            font-weight: 500;
         }
 
         .about-well-quote {
-            margin: 24px 0;
-            padding: 20px 24px;
+            margin: 28px 0;
+            padding: 24px 28px;
             background: rgba(255, 255, 255, 0.03);
             border-left: 3px solid var(--sky-blue);
             border-radius: 0 8px 8px 0;
             font-family: 'Exo 2', sans-serif;
             font-style: italic;
-            font-size: 0.95rem;
+            font-size: 1.15rem;
             color: var(--ice-blue);
-            line-height: 1.7;
+            line-height: 1.8;
             position: relative;
+            font-weight: 500;
         }
 
         .about-well-quote::before {
@@ -1083,21 +1055,21 @@
             font-size: 3rem;
             color: var(--sky-blue);
             opacity: 0.3;
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Bebas Neue', sans-serif;
         }
 
         .about-values {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            gap: 14px;
             margin-top: 30px;
         }
 
         .about-value-item {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 12px 16px;
+            gap: 12px;
+            padding: 14px 18px;
             background: var(--glass);
             border: 1px solid var(--glass-border);
             border-radius: 6px;
@@ -1111,8 +1083,8 @@
         }
 
         .about-value-item .dot {
-            width: 6px;
-            height: 6px;
+            width: 8px;
+            height: 8px;
             background: var(--white);
             border-radius: 50%;
             box-shadow: 0 0 8px var(--white);
@@ -1120,86 +1092,21 @@
         }
 
         .about-value-item span {
-            font-size: 0.85rem;
-            font-weight: 500;
+            font-size: 1rem;
+            font-weight: 700;
             letter-spacing: 0.5px;
-        }
-
-        /* Stats */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-            margin-top: 80px;
-        }
-
-        .stat-card {
-            text-align: center;
-            padding: 36px 20px;
-            background: var(--bg-card);
-            border: 1px solid var(--glass-border);
-            border-radius: 8px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            box-shadow:
-                0 4px 0 rgba(0, 0, 0, 0.3),
-                0 8px 20px rgba(0, 0, 0, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.05);
-        }
-
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--white), var(--sky-blue));
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-        }
-
-        .stat-card:hover::before { transform: scaleX(1); }
-
-        .stat-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--white);
-            box-shadow:
-                0 12px 0 rgba(0, 0, 0, 0.3),
-                0 20px 40px rgba(0, 0, 0, 0.3),
-                0 0 30px rgba(255, 255, 255, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.05);
-        }
-
-        .stat-number {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--white), var(--sky-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 8px;
-        }
-
-        .stat-label {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.7rem;
-            color: var(--text-dim);
-            letter-spacing: 2px;
-            text-transform: uppercase;
         }
 
         /* ============================================
            MINISTRIES SECTION
         ============================================ */
-        .ministries {
+        .ministries-page {
             background: var(--deep-blue);
             position: relative;
+            padding: 120px 0 100px;
         }
 
-        .ministries::before {
+        .ministries-page::before {
             content: '';
             position: absolute;
             top: 0;
@@ -1212,11 +1119,11 @@
         .ministries-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            gap: 24px;
         }
 
         .ministry-card {
-            padding: 36px 24px;
+            padding: 40px 28px;
             background: var(--bg-card);
             border: 1px solid var(--glass-border);
             border-radius: 8px;
@@ -1255,16 +1162,16 @@
         .ministry-card:hover::before { opacity: 1; }
 
         .ministry-icon {
-            width: 64px;
-            height: 64px;
-            margin: 0 auto 20px;
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 22px;
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(77, 168, 218, 0.08));
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.6rem;
+            font-size: 2rem;
             transition: all 0.4s ease;
             position: relative;
             z-index: 1;
@@ -1284,32 +1191,37 @@
         }
 
         .ministry-card h4 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            letter-spacing: 2px;
             text-transform: uppercase;
             position: relative;
             z-index: 1;
         }
 
         .ministry-card p {
-            font-size: 0.85rem;
+            font-size: 1rem;
             color: var(--text-secondary);
             line-height: 1.7;
             position: relative;
             z-index: 1;
+            font-weight: 500;
         }
 
         /* ============================================
-           SERMONS SECTION
+           SERMONS SECTION - COMING SOON
         ============================================ */
-        .sermons {
+        .sermons-page {
             background: var(--deep-blue-dark);
+            position: relative;
+            padding: 120px 0 100px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
         }
 
-        .sermons::before {
+        .sermons-page::before {
             content: '';
             position: absolute;
             top: 0;
@@ -1319,418 +1231,97 @@
             background: linear-gradient(90deg, transparent, var(--white), transparent);
         }
 
-        .sermon-featured {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 50px;
-            align-items: center;
-            margin-bottom: 60px;
-        }
-
-        .sermon-video-card {
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            aspect-ratio: 16/9;
-            background: linear-gradient(135deg, var(--deep-blue), rgba(255, 255, 255, 0.05));
-            border: 1px solid var(--glass-border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            box-shadow:
-                0 6px 0 rgba(0, 0, 0, 0.3),
-                0 12px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .sermon-video-card:hover {
-            border-color: var(--white);
-            transform: translateY(-4px);
-            box-shadow:
-                0 10px 0 rgba(0, 0, 0, 0.3),
-                0 20px 40px rgba(0, 0, 0, 0.4),
-                0 0 30px rgba(255, 255, 255, 0.1);
-        }
-
-        .sermon-video-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(circle at center, rgba(255, 255, 255, 0.15), transparent 60%);
-        }
-
-        .play-button {
-            width: 80px;
-            height: 80px;
-            border: 2px solid var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            z-index: 2;
-            transition: all 0.3s ease;
-            animation: playPulse 2s ease-in-out infinite;
-            background: rgba(255, 255, 255, 0.05);
-            box-shadow:
-                0 4px 0 rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2);
-        }
-
-        .play-button::after {
-            content: '▶';
-            color: var(--white);
-            font-size: 1.5rem;
-            margin-left: 4px;
-        }
-
-        .sermon-video-card:hover .play-button {
-            background: var(--white);
-            border-color: var(--sky-blue);
-            transform: translateY(-2px);
-            box-shadow:
-                0 6px 0 var(--deep-blue-light),
-                0 10px 25px rgba(255, 255, 255, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.8);
-        }
-
-        .sermon-video-card:hover .play-button::after { color: var(--deep-blue); }
-
-        @keyframes playPulse {
-            0%, 100% { box-shadow: 0 4px 0 rgba(0, 0, 0, 0.3), 0 0 0 0 rgba(255, 255, 255, 0.4); }
-            50% { box-shadow: 0 4px 0 rgba(0, 0, 0, 0.3), 0 0 0 20px rgba(255, 255, 255, 0); }
-        }
-
-        .sermon-info h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 16px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .sermon-meta {
-            display: flex;
-            gap: 16px;
-            margin-bottom: 16px;
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.75rem;
-            color: var(--ice-blue);
-            letter-spacing: 1px;
-        }
-
-        .sermon-info p {
-            color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 24px;
-        }
-
-        .sermons-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-
-        .sermon-card {
-            background: var(--bg-card);
-            border: 1px solid var(--glass-border);
-            border-radius: 8px;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            box-shadow:
-                0 4px 0 rgba(0, 0, 0, 0.3),
-                0 8px 20px rgba(0, 0, 0, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.05);
-        }
-
-        .sermon-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--white);
-            box-shadow:
-                0 12px 0 rgba(0, 0, 0, 0.3),
-                0 20px 40px rgba(0, 0, 0, 0.3),
-                0 0 25px rgba(255, 255, 255, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.05);
-        }
-
-        .sermon-card-thumb {
-            height: 180px;
-            background: linear-gradient(135deg, var(--deep-blue), rgba(255, 255, 255, 0.05));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .play-btn-sm {
-            width: 50px;
-            height: 50px;
-            border: 1px solid var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.05);
-            box-shadow:
-                0 3px 0 rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        }
-
-        .sermon-card:hover .play-btn-sm {
-            background: var(--white);
-            border-color: var(--sky-blue);
-            color: var(--deep-blue);
-            transform: translateY(-2px);
-            box-shadow:
-                0 5px 0 var(--deep-blue-light),
-                0 8px 20px rgba(255, 255, 255, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.8);
-        }
-
-        .sermon-card-body {
-            padding: 20px;
-        }
-
-        .sermon-card-body h4 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-            letter-spacing: 0.5px;
-        }
-
-        .sermon-card-body .date {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.7rem;
-            color: var(--text-dim);
-            letter-spacing: 1px;
-        }
-
-        /* ============================================
-           DAILY DEVOTION
-        ============================================ */
-        .devotion {
-            background: var(--deep-blue);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .devotion::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--sky-blue), transparent);
-        }
-
-        .devotion-card {
+        .coming-soon-wrapper {
+            text-align: center;
             max-width: 800px;
             margin: 0 auto;
-            text-align: center;
             padding: 60px 40px;
             background: var(--bg-card);
             border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            position: relative;
-            overflow: hidden;
+            border-radius: 16px;
             box-shadow:
                 0 6px 0 rgba(0, 0, 0, 0.3),
                 0 12px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .devotion-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.03), transparent, rgba(77, 168, 218, 0.03), transparent);
-            animation: devotionRotate 10s linear infinite;
-        }
-
-        @keyframes devotionRotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .devotion-card > * { position: relative; z-index: 1; }
-
-        .devotion-card .verse-icon {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 0 20px var(--white));
-        }
-
-        .devotion-card .verse {
-            font-family: 'Exo 2', sans-serif;
-            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
-            font-style: italic;
-            font-weight: 300;
-            line-height: 1.7;
-            margin-bottom: 20px;
-            color: rgba(255, 255, 255, 0.95);
-        }
-
-        .devotion-card .reference {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--sky-blue);
-            font-weight: 600;
-            font-size: 0.8rem;
-            letter-spacing: 3px;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-        }
-
-        .devotion-card .reflection {
-            color: var(--text-secondary);
-            line-height: 1.9;
-            font-size: 0.95rem;
-            max-width: 600px;
-            margin: 0 auto 30px;
-        }
-
-        .devotion-card .prayer-text {
-            padding: 24px;
-            background: rgba(255, 255, 255, 0.03);
-            border-left: 2px solid var(--sky-blue);
-            border-radius: 0 8px 8px 0;
-            text-align: left;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            line-height: 1.8;
-        }
-
-        .devotion-card .prayer-text strong {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--sky-blue);
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        /* ============================================
-           TESTIMONIES
-        ============================================ */
-        .testimonies {
-            background: var(--deep-blue-dark);
+            position: relative;
             overflow: hidden;
         }
 
-        .testimonies::before {
+        .coming-soon-wrapper::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--sky-blue), transparent);
+            height: 2px;
+            background: linear-gradient(90deg, var(--white), var(--sky-blue), var(--ice-blue));
         }
 
-        .testimony-carousel {
-            position: relative;
-            max-width: 900px;
-            margin: 0 auto;
+        .coming-soon-icon {
+            font-size: 5rem;
+            margin-bottom: 24px;
+            filter: drop-shadow(0 0 30px var(--sky-blue));
+            animation: pulseIcon 2s ease-in-out infinite;
         }
 
-        .testimony-slide {
-            display: none;
-            text-align: center;
-            padding: 50px 40px;
-            animation: fadeIn 0.8s ease;
-            background: var(--bg-card);
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            box-shadow:
-                0 6px 0 rgba(0, 0, 0, 0.3),
-                0 12px 30px rgba(0, 0, 0, 0.3);
+        @keyframes pulseIcon {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
         }
 
-        .testimony-slide.active { display: block; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .testimony-quote {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3rem;
-            background: linear-gradient(135deg, var(--white), var(--sky-blue));
+        .coming-soon-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 7vw, 5rem);
+            letter-spacing: 6px;
+            background: linear-gradient(135deg, var(--white), var(--ice-blue), var(--sky-blue));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
+            line-height: 1.1;
         }
 
-        .testimony-text {
-            font-family: 'Exo 2', sans-serif;
-            font-size: 1.2rem;
-            font-style: italic;
-            font-weight: 300;
-            color: rgba(255, 255, 255, 0.85);
+        .coming-soon-text {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
             line-height: 1.8;
-            margin-bottom: 24px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+            margin-bottom: 30px;
+            font-weight: 500;
         }
 
-        .testimony-author {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--sky-blue);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .testimony-location {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.7rem;
-            color: var(--text-dim);
-            letter-spacing: 2px;
-            margin-top: 4px;
-        }
-
-        .testimony-dots {
+        .coming-soon-dots {
             display: flex;
             justify-content: center;
-            gap: 10px;
-            margin-top: 30px;
+            gap: 12px;
+            margin-top: 20px;
         }
 
-        .testimony-dot {
-            width: 30px;
-            height: 3px;
-            background: rgba(255, 255, 255, 0.2);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-radius: 2px;
+        .coming-soon-dots span {
+            width: 12px;
+            height: 12px;
+            background: var(--sky-blue);
+            border-radius: 50%;
+            animation: dotPulse 1.4s ease-in-out infinite;
+            box-shadow: 0 0 10px var(--sky-blue);
         }
 
-        .testimony-dot.active {
-            background: var(--white);
-            box-shadow: 0 0 10px var(--white);
-            width: 50px;
+        .coming-soon-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .coming-soon-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes dotPulse {
+            0%, 80%, 100% { transform: scale(0.6); opacity: 0.5; }
+            40% { transform: scale(1); opacity: 1; }
         }
 
         /* ============================================
            PRAYER REQUEST
         ============================================ */
-        .prayer-section {
+        .prayer-page {
             background: var(--deep-blue);
+            position: relative;
+            padding: 120px 0 100px;
         }
 
-        .prayer-section::before {
+        .prayer-page::before {
             content: '';
             position: absolute;
             top: 0;
@@ -1741,7 +1332,7 @@
         }
 
         .prayer-form-wrapper {
-            max-width: 700px;
+            max-width: 750px;
             margin: 0 auto;
             padding: 50px;
             background: var(--bg-card);
@@ -1775,10 +1366,10 @@
 
         .form-group label {
             display: block;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.65rem;
-            font-weight: 600;
-            margin-bottom: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 800;
+            margin-bottom: 10px;
             color: var(--sky-blue);
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -1788,14 +1379,15 @@
         .form-group textarea,
         .form-group select {
             width: 100%;
-            padding: 14px 18px;
+            padding: 16px 20px;
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 6px;
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 0.95rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.05rem;
             background: rgba(5, 11, 31, 0.6);
             color: white;
             transition: all 0.3s ease;
+            font-weight: 500;
         }
 
         .form-group input:focus,
@@ -1811,39 +1403,40 @@
         }
 
         .form-group textarea {
-            height: 140px;
+            height: 160px;
             resize: vertical;
         }
 
         .checkbox-group {
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 24px;
+            gap: 12px;
+            margin-bottom: 28px;
         }
 
         .checkbox-group input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             accent-color: var(--sky-blue);
         }
 
         .checkbox-group label {
-            font-size: 0.85rem;
+            font-size: 1rem;
             color: var(--text-secondary);
             margin: 0;
+            font-weight: 500;
         }
 
         .form-submit {
             width: 100%;
-            padding: 16px;
+            padding: 18px;
             background: linear-gradient(135deg, var(--white), var(--white-soft));
             color: var(--deep-blue);
             border: none;
             border-radius: 8px;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 800;
             letter-spacing: 3px;
             text-transform: uppercase;
             cursor: pointer;
@@ -1876,11 +1469,13 @@
         /* ============================================
            GALLERY
         ============================================ */
-        .gallery {
+        .gallery-page {
             background: var(--deep-blue-dark);
+            position: relative;
+            padding: 120px 0 100px;
         }
 
-        .gallery::before {
+        .gallery-page::before {
             content: '';
             position: absolute;
             top: 0;
@@ -1892,12 +1487,12 @@
 
         .gallery-masonry {
             columns: 4;
-            column-gap: 16px;
+            column-gap: 18px;
         }
 
         .gallery-item {
             break-inside: avoid;
-            margin-bottom: 16px;
+            margin-bottom: 18px;
             border-radius: 8px;
             overflow: hidden;
             position: relative;
@@ -1925,10 +1520,11 @@
             justify-content: center;
             color: var(--text-dim);
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.7rem;
+            font-size: 0.85rem;
             letter-spacing: 2px;
             text-transform: uppercase;
             background: linear-gradient(135deg, var(--bg-card), rgba(255, 255, 255, 0.03));
+            font-weight: 600;
         }
 
         .gallery-item:nth-child(1) .gallery-item-inner { height: 250px; }
@@ -1955,8 +1551,8 @@
 
         .gallery-overlay span {
             color: var(--deep-blue);
-            font-size: 1.5rem;
-            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-family: 'Bebas Neue', sans-serif;
         }
 
         .lightbox {
@@ -2009,79 +1605,18 @@
             background: var(--white);
             color: var(--deep-blue);
             transform: translateY(-2px) rotate(90deg);
-            box-shadow:
-                0 6px 0 rgba(0, 0, 0, 0.3),
-                0 10px 25px rgba(255, 255, 255, 0.3);
         }
-
-        /* ============================================
-           SOCIAL MEDIA
-        ============================================ */
-        .social-section {
-            background: var(--deep-blue);
-            text-align: center;
-        }
-
-        .social-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--sky-blue), transparent);
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .social-link {
-            width: 70px;
-            height: 70px;
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            background: var(--bg-card);
-            color: var(--text-secondary);
-            box-shadow:
-                0 4px 0 rgba(0, 0, 0, 0.3),
-                0 8px 20px rgba(0, 0, 0, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.05);
-        }
-
-        .social-link:hover {
-            transform: translateY(-6px);
-            border-color: var(--white);
-            color: var(--white);
-            box-shadow:
-                0 10px 0 rgba(0, 0, 0, 0.3),
-                0 18px 35px rgba(0, 0, 0, 0.3),
-                0 0 30px rgba(255, 255, 255, 0.15),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        }
-
-        .social-link.tiktok:hover { background: #000; border-color: var(--sky-blue); box-shadow: 0 10px 0 rgba(0,0,0,0.3), var(--glow-blue); }
-        .social-link.facebook:hover { background: #1877F2; border-color: #1877F2; }
-        .social-link.youtube:hover { background: #FF0000; border-color: #FF0000; }
-        .social-link.whatsapp:hover { background: #25D366; border-color: #25D366; }
 
         /* ============================================
            CONTACT
         ============================================ */
-        .contact {
-            background: var(--deep-blue-dark);
+        .contact-page {
+            background: var(--deep-blue);
+            position: relative;
+            padding: 120px 0 100px;
         }
 
-        .contact::before {
+        .contact-page::before {
             content: '';
             position: absolute;
             top: 0;
@@ -2106,8 +1641,8 @@
         .contact-item {
             display: flex;
             align-items: flex-start;
-            gap: 16px;
-            padding: 20px;
+            gap: 18px;
+            padding: 24px;
             background: var(--bg-card);
             border: 1px solid var(--glass-border);
             border-radius: 8px;
@@ -2129,14 +1664,14 @@
         }
 
         .contact-item .icon {
-            width: 44px;
-            height: 44px;
+            width: 52px;
+            height: 52px;
             background: linear-gradient(135deg, var(--white), var(--ice-blue));
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.1rem;
+            font-size: 1.4rem;
             flex-shrink: 0;
             box-shadow:
                 0 4px 0 var(--deep-blue-light),
@@ -2145,35 +1680,35 @@
         }
 
         .contact-item h5 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 600;
-            margin-bottom: 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 800;
+            margin-bottom: 6px;
             letter-spacing: 2px;
             text-transform: uppercase;
             color: var(--sky-blue);
         }
 
         .contact-item p {
-            font-size: 0.9rem;
+            font-size: 1.05rem;
             color: var(--text-secondary);
+            font-weight: 500;
         }
 
         .contact-item a {
             color: var(--text-secondary);
             text-decoration: none;
             transition: color 0.3s ease;
+            font-weight: 600;
         }
 
-        .contact-item a:hover {
-            color: var(--white);
-        }
+        .contact-item a:hover { color: var(--white); }
 
         .contact-map {
             border-radius: 12px;
             overflow: hidden;
             height: 100%;
-            min-height: 400px;
+            min-height: 450px;
             background: var(--bg-card);
             border: 1px solid var(--glass-border);
             display: flex;
@@ -2202,16 +1737,17 @@
         }
 
         .contact-map-placeholder .map-icon {
-            font-size: 3rem;
-            margin-bottom: 12px;
+            font-size: 3.5rem;
+            margin-bottom: 14px;
             filter: drop-shadow(0 0 20px var(--white));
         }
 
         .contact-map-placeholder p {
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.75rem;
+            font-size: 0.9rem;
             color: var(--text-dim);
             letter-spacing: 2px;
+            font-weight: 600;
         }
 
         /* ============================================
@@ -2236,46 +1772,47 @@
 
         .footer-grid {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            grid-template-columns: 2fr 1fr 1fr;
             gap: 50px;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
         }
 
         .footer-brand h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 16px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 18px;
             background: linear-gradient(135deg, var(--white), var(--sky-blue));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
         }
 
         .footer-brand p {
             color: var(--text-secondary);
-            font-size: 0.9rem;
+            font-size: 1rem;
             line-height: 1.8;
             margin-bottom: 20px;
+            font-weight: 500;
         }
 
         .footer-scripture {
-            padding: 16px;
+            padding: 18px;
             background: rgba(255, 255, 255, 0.03);
             border-left: 2px solid var(--sky-blue);
             border-radius: 0 6px 6px 0;
             font-style: italic;
-            font-size: 0.85rem;
+            font-size: 1rem;
             color: var(--text-secondary);
             line-height: 1.7;
+            font-weight: 500;
         }
 
         .footer h4 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 600;
-            margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 800;
+            margin-bottom: 22px;
             letter-spacing: 3px;
             text-transform: uppercase;
             color: var(--sky-blue);
@@ -2285,14 +1822,16 @@
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 14px;
         }
 
         .footer-links a {
             color: var(--text-secondary);
             text-decoration: none;
-            font-size: 0.88rem;
+            font-size: 1rem;
+            font-weight: 600;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .footer-links a:hover {
@@ -2301,120 +1840,82 @@
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
 
-        .newsletter-form {
-            display: flex;
-            gap: 10px;
-            margin-top: 16px;
-        }
-
-        .newsletter-form input {
-            flex: 1;
-            padding: 12px 16px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 6px;
-            background: rgba(5, 11, 31, 0.6);
-            color: white;
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 0.85rem;
-        }
-
-        .newsletter-form input::placeholder { color: var(--text-dim); }
-
-        .newsletter-form input:focus {
-            outline: none;
-            border-color: var(--white);
-        }
-
-        .newsletter-form button {
-            padding: 12px 20px;
-            background: linear-gradient(135deg, var(--white), var(--white-soft));
-            color: var(--deep-blue);
-            border: none;
-            border-radius: 6px;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.65rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow:
-                0 4px 0 var(--deep-blue-light),
-                0 6px 15px rgba(255, 255, 255, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.8);
-        }
-
-        .newsletter-form button:hover {
-            transform: translateY(-2px);
-            box-shadow:
-                0 6px 0 var(--deep-blue-light),
-                0 10px 25px rgba(255, 255, 255, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.8);
-        }
-
-        .newsletter-form button:active {
-            transform: translateY(2px);
-            box-shadow:
-                0 2px 0 var(--deep-blue-light),
-                0 3px 8px rgba(255, 255, 255, 0.15),
-                inset 0 1px 0 rgba(255, 255, 255, 0.8);
-        }
-
         .footer-bottom {
             padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.08);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 16px;
+            text-align: center;
         }
 
         .footer-bottom p {
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.7rem;
+            font-size: 0.85rem;
             color: var(--text-dim);
             letter-spacing: 1px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .footer-powered {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--ice-blue);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 12px 24px;
+            background: rgba(77, 168, 218, 0.08);
+            border: 1px solid rgba(77, 168, 218, 0.2);
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .footer-powered strong {
+            color: var(--white);
+            font-weight: 800;
         }
 
         .footer-bottom-links {
             display: flex;
-            gap: 20px;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 20px;
         }
 
         .footer-bottom-links a {
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.7rem;
+            font-size: 0.85rem;
             color: var(--text-dim);
             text-decoration: none;
             letter-spacing: 1px;
             transition: all 0.3s ease;
+            font-weight: 600;
         }
 
         .footer-bottom-links a:hover { color: var(--white); }
 
         /* ============================================
-           FLOATING BUTTONS
+           FLOATING BUTTONS - WhatsApp + Share only
         ============================================ */
         .floating-whatsapp {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            width: 60px;
-            height: 60px;
+            width: 64px;
+            height: 64px;
             background: linear-gradient(135deg, #25D366, #128C7E);
             border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.5rem;
+            font-size: 1.7rem;
             text-decoration: none;
             box-shadow:
                 0 6px 0 #0B6B4F,
                 0 10px 25px rgba(37, 211, 102, 0.4),
                 inset 0 1px 0 rgba(255, 255, 255, 0.3);
-            z-index: 9999;
+            z-index: 9998;
             transition: all 0.2s ease;
             animation: float 3s ease-in-out infinite;
         }
@@ -2435,31 +1936,31 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.3);
         }
 
-        .floating-prayer {
+        .floating-share {
             position: fixed;
-            bottom: 105px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
+            bottom: 30px;
+            right: 110px;
+            width: 64px;
+            height: 64px;
             background: linear-gradient(135deg, var(--white), var(--white-soft));
             border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--deep-blue);
-            font-size: 1.3rem;
-            text-decoration: none;
+            font-size: 1.6rem;
+            cursor: pointer;
+            border: none;
             box-shadow:
                 0 6px 0 var(--deep-blue-light),
                 0 10px 25px rgba(255, 255, 255, 0.25),
                 inset 0 1px 0 rgba(255, 255, 255, 0.9);
-            z-index: 9999;
+            z-index: 9998;
             transition: all 0.2s ease;
             animation: float 3s ease-in-out infinite 0.5s;
-            border: 1px solid rgba(77, 168, 218, 0.3);
         }
 
-        .floating-prayer:hover {
+        .floating-share:hover {
             transform: translateY(-4px);
             box-shadow:
                 0 10px 0 var(--deep-blue-light),
@@ -2467,7 +1968,7 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.9);
         }
 
-        .floating-prayer:active {
+        .floating-share:active {
             transform: translateY(2px);
             box-shadow:
                 0 2px 0 var(--deep-blue-light),
@@ -2479,18 +1980,18 @@
             position: fixed;
             bottom: 30px;
             left: 30px;
-            width: 46px;
-            height: 46px;
+            width: 52px;
+            height: 52px;
             background: linear-gradient(135deg, var(--white), var(--white-soft));
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--deep-blue);
-            font-size: 1.1rem;
+            font-size: 1.3rem;
             cursor: pointer;
-            z-index: 9999;
+            z-index: 9998;
             opacity: 0;
             visibility: hidden;
             transition: all 0.2s ease;
@@ -2513,27 +2014,36 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.8);
         }
 
-        .back-to-top:active {
-            transform: translateY(2px);
-            box-shadow:
-                0 2px 0 var(--deep-blue-light),
-                0 3px 8px rgba(255, 255, 255, 0.15),
-                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        /* Share toast notification */
+        .share-toast {
+            position: fixed;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-20px);
+            background: linear-gradient(135deg, var(--white), var(--white-soft));
+            color: var(--deep-blue);
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 100001;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .share-toast.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
         }
 
         /* ============================================
            REVEAL ANIMATIONS
         ============================================ */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
         .reveal {
             opacity: 0;
             transform: translateY(40px);
@@ -2592,47 +2102,51 @@
             .hamburger { display: flex; }
 
             .about-grid { grid-template-columns: 1fr; gap: 50px; }
-            .sermon-featured { grid-template-columns: 1fr; }
-            .sermons-grid { grid-template-columns: repeat(2, 1fr); }
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
             .contact-grid { grid-template-columns: 1fr; }
             .gallery-masonry { columns: 3; }
             .ministries-grid { grid-template-columns: repeat(2, 1fr); }
 
             .hero-3d-cross { display: none; }
-
             .nav-logo-text { min-width: auto; }
         }
 
         @media (max-width: 768px) {
-            section { padding: 80px 0; }
+            body { font-size: 17px; }
+
+            .page { padding-top: 90px; }
+
             .container { padding: 0 20px; }
             .nav-container { padding: 0 20px; }
 
-            .hero h1 { font-size: 1.8rem; }
+            .hero h1 { font-size: 2.5rem; }
             .hero-buttons { flex-direction: column; }
-            .btn-3d { width: 100%; justify-content: center; }
+            .btn-3d { width: 100%; justify-content: center; padding: 16px 30px; }
 
             .ministries-grid { grid-template-columns: 1fr; }
-            .sermons-grid { grid-template-columns: 1fr; }
-            .stats-grid { grid-template-columns: 1fr 1fr; }
             .gallery-masonry { columns: 2; }
 
             .form-row { grid-template-columns: 1fr; }
             .prayer-form-wrapper { padding: 30px 20px; }
             .footer-grid { grid-template-columns: 1fr; gap: 30px; }
-            .footer-bottom { flex-direction: column; text-align: center; }
 
             .about-values { grid-template-columns: 1fr; }
             .about-image { transform: rotateY(0); }
+
+            .floating-whatsapp,
+            .floating-share {
+                width: 56px;
+                height: 56px;
+                font-size: 1.4rem;
+            }
+
+            .floating-share { right: 96px; }
         }
 
         @media (max-width: 480px) {
-            .hero h1 { font-size: 1.5rem; }
-            .section-title { font-size: 1.5rem; }
+            .hero h1 { font-size: 2rem; }
+            .section-title { font-size: 2rem; }
             .gallery-masonry { columns: 1; }
-            .stats-grid { grid-template-columns: 1fr; }
-            .devotion-card { padding: 30px 20px; }
+            .coming-soon-title { font-size: 2.5rem; }
         }
     </style>
 </head>
@@ -2654,10 +2168,13 @@
     <!-- SCROLL PROGRESS -->
     <div class="scroll-progress" id="scrollProgress"></div>
 
+    <!-- SHARE TOAST -->
+    <div class="share-toast" id="shareToast">✓ Link copied to clipboard!</div>
+
     <!-- NAVIGATION -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="#home" class="nav-logo">
+            <a class="nav-logo" onclick="navigateTo('home')">
                 <div class="logo-3d">
                     <div class="logo-face">✝</div>
                     <div class="logo-face">✦</div>
@@ -2671,16 +2188,16 @@
             </a>
 
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#ministries">Ministry</a></li>
-                <li><a href="#sermons">Sermons</a></li>
-                <li><a href="#prayer">Prayer</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a onclick="navigateTo('home')" data-page="home" class="active-link">Home</a></li>
+                <li><a onclick="navigateTo('about')" data-page="about">About</a></li>
+                <li><a onclick="navigateTo('ministries')" data-page="ministries">Ministry</a></li>
+                <li><a onclick="navigateTo('sermons')" data-page="sermons">Sermons</a></li>
+                <li><a onclick="navigateTo('prayer')" data-page="prayer">Prayer</a></li>
+                <li><a onclick="navigateTo('gallery')" data-page="gallery">Gallery</a></li>
+                <li><a onclick="navigateTo('contact')" data-page="contact">Contact</a></li>
             </ul>
 
-            <a href="#prayer" class="nav-cta">Request Prayer</a>
+            <a class="nav-cta" onclick="navigateTo('prayer')">Request Prayer</a>
 
             <div class="hamburger" id="hamburger">
                 <span></span>
@@ -2692,326 +2209,224 @@
 
     <!-- MOBILE MENU -->
     <div class="mobile-menu" id="mobileMenu">
-        <a href="#home" onclick="closeMobile()">Home</a>
-        <a href="#about" onclick="closeMobile()">About</a>
-        <a href="#ministries" onclick="closeMobile()">Ministry</a>
-        <a href="#sermons" onclick="closeMobile()">Sermons</a>
-        <a href="#prayer" onclick="closeMobile()">Prayer</a>
-        <a href="#gallery" onclick="closeMobile()">Gallery</a>
-        <a href="#contact" onclick="closeMobile()">Contact</a>
+        <a onclick="navigateTo('home'); closeMobile()">Home</a>
+        <a onclick="navigateTo('about'); closeMobile()">About</a>
+        <a onclick="navigateTo('ministries'); closeMobile()">Ministry</a>
+        <a onclick="navigateTo('sermons'); closeMobile()">Sermons</a>
+        <a onclick="navigateTo('prayer'); closeMobile()">Prayer</a>
+        <a onclick="navigateTo('gallery'); closeMobile()">Gallery</a>
+        <a onclick="navigateTo('contact'); closeMobile()">Contact</a>
     </div>
 
-    <!-- HERO -->
-    <section class="hero" id="home">
-        <div class="hero-grid"></div>
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
-        <div class="particles-container" id="particles"></div>
-        <div class="scanlines"></div>
+    <!-- ============================================
+         PAGE 1: HOME
+    ============================================ -->
+    <div class="page active" id="home">
+        <section class="hero">
+            <div class="hero-grid"></div>
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+            <div class="particles-container" id="particles"></div>
+            <div class="scanlines"></div>
 
-        <div class="hero-3d-cross">
-            <div class="cross-beam cross-beam-v"></div>
-            <div class="cross-beam cross-beam-h"></div>
-        </div>
-
-        <div class="hero-content">
-            <div class="hero-tag">Digital Sanctuary Online</div>
-            <h1>
-                <span class="line-1">Healing Lives Through</span>
-                <span class="line-2">The Power of Jesus Christ</span>
-            </h1>
-            <p class="hero-subtitle">Welcome to Destiny Praise Chapel Healing and Deliverance Ministry International, where faith is strengthened, lives are transformed, and hope is renewed through the Word of God and the power of prayer.</p>
-            <div class="hero-buttons">
-                <a href="#prayer" class="btn-3d btn-3d-primary">🙏 Request Prayer</a>
-                <a href="#sermons" class="btn-3d btn-3d-secondary">▶ Watch Sermons</a>
-            </div>
-        </div>
-
-        <div class="scroll-indicator">
-            <span>Scroll</span>
-            <div class="scroll-line"></div>
-        </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="section-header reveal">
-                <div class="section-tag">Our Story</div>
-                <h2 class="section-title">A Ministry Born of <span class="highlight">Divine Purpose</span></h2>
-                <p class="section-subtitle">Founded by Prophetess Mother Hellen, this ministry carries the fire of the Holy Spirit to every nation.</p>
+            <div class="hero-3d-cross">
+                <div class="cross-beam cross-beam-v"></div>
+                <div class="cross-beam cross-beam-h"></div>
             </div>
 
-            <div class="about-grid">
-                <div class="about-image-wrapper reveal-left">
-                    <div class="about-image">
-                        <div class="about-image-placeholder">
-                            <div class="cross-icon">✝</div>
-                            <p>Prophetess Mother Hellen</p>
-                            <small>(Prophetess Hsagbata)</small>
-                            <small style="margin-top: 8px;">Founder & Spiritual Leader</small>
+            <div class="hero-content">
+                <div class="hero-tag">Digital Sanctuary Online</div>
+                <h1>
+                    <span class="line-1">Healing Lives Through</span>
+                    <span class="line-2">The Power of Jesus Christ</span>
+                </h1>
+                <p class="hero-subtitle">Welcome to Destiny Praise Chapel Healing and Deliverance Ministry International, where faith is strengthened, lives are transformed, and hope is renewed through the Word of God and the power of prayer.</p>
+                <div class="hero-buttons">
+                    <a class="btn-3d btn-3d-primary" onclick="navigateTo('prayer')">🙏 Request Prayer</a>
+                    <a class="btn-3d btn-3d-secondary" onclick="navigateTo('sermons')">▶ Watch Sermons</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============================================
+         PAGE 2: ABOUT
+    ============================================ -->
+    <div class="page" id="about">
+        <section class="about-page">
+            <div class="container">
+                <div class="section-header reveal">
+                    <div class="section-tag">Our Story</div>
+                    <h2 class="section-title">A Ministry Born of <span class="highlight">Divine Purpose</span></h2>
+                    <p class="section-subtitle">Founded by Prophetess Mother Hellen, this ministry carries the fire of the Holy Spirit to every nation.</p>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-image-wrapper reveal-left">
+                        <div class="about-image">
+                            <div class="about-image-placeholder">
+                                <div class="cross-icon">✝</div>
+                                <p>Prophetess Mother Hellen</p>
+                                <small>(Prophetess Hsagbata)</small>
+                                <small style="margin-top: 8px;">Founder & Spiritual Leader</small>
+                            </div>
+                        </div>
+                        <div class="about-image-frame"></div>
+                        <div class="about-floating-card">
+                            <div class="icon">💧</div>
+                            <div class="text">
+                                A Well of Living Water
+                                <span>Flowing to the Nations</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="about-image-frame"></div>
-                    <div class="about-floating-card">
-                        <div class="icon">💧</div>
-                        <div class="text">
-                            A Well of Living Water
-                            <span>Flowing to the Nations</span>
+
+                    <div class="about-content reveal-right">
+                        <h3>Prophetess Mother Hellen</h3>
+                        <p>Prophetess Mother Hellen, also known as Prophetess Hsagbata, is a woman of extraordinary faith and divine calling. Through years of fervent prayer, unwavering dedication, and the undeniable power of the Holy Spirit, she has built a ministry that touches lives across nations.</p>
+
+                        <div class="about-well-quote">
+                            She is a well — a deep, flowing well of living water. From her life, rivers of healing, deliverance, and prophetic insight spring forth to quench the thirst of souls and renew the weary. Where she ministers, dry places bloom and broken lives are made whole.
+                        </div>
+
+                        <p>Destiny Praise Chapel Healing and Deliverance Ministry International was established with a singular mission: to lead people to Christ through prayer, healing, deliverance, revival, worship, biblical teaching, and the transforming power of the Holy Spirit.</p>
+                        <p>Under her anointed leadership, thousands have experienced miraculous healings, spiritual deliverance, and life transformation.</p>
+
+                        <div class="about-values">
+                            <div class="about-value-item"><div class="dot"></div><span>Faith & Prayer</span></div>
+                            <div class="about-value-item"><div class="dot"></div><span>Healing & Miracles</span></div>
+                            <div class="about-value-item"><div class="dot"></div><span>Deliverance</span></div>
+                            <div class="about-value-item"><div class="dot"></div><span>Biblical Teaching</span></div>
+                            <div class="about-value-item"><div class="dot"></div><span>Revival & Worship</span></div>
+                            <div class="about-value-item"><div class="dot"></div><span>Community & Love</span></div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
+    </div>
 
-                <div class="about-content reveal-right">
-                    <h3>Prophetess Mother Hellen</h3>
-                    <p>Prophetess Mother Hellen, also known as Prophetess Hsagbata, is a woman of extraordinary faith and divine calling. Through years of fervent prayer, unwavering dedication, and the undeniable power of the Holy Spirit, she has built a ministry that touches lives across nations.</p>
+    <!-- ============================================
+         PAGE 3: MINISTRIES
+    ============================================ -->
+    <div class="page" id="ministries">
+        <section class="ministries-page">
+            <div class="container">
+                <div class="section-header reveal">
+                    <div class="section-tag">What We Do</div>
+                    <h2 class="section-title">Our <span class="highlight">Ministries</span></h2>
+                    <p class="section-subtitle">Each ministry arm operates under the anointing of the Holy Spirit to bring transformation.</p>
+                </div>
 
-                    <div class="about-well-quote">
-                        She is a well — a deep, flowing well of living water. From her life, rivers of healing, deliverance, and prophetic insight spring forth to quench the thirst of souls and renew the weary. Where she ministers, dry places bloom and broken lives are made whole.
-                    </div>
-
-                    <p>Destiny Praise Chapel Healing and Deliverance Ministry International was established with a singular mission: to lead people to Christ through prayer, healing, deliverance, revival, worship, biblical teaching, and the transforming power of the Holy Spirit.</p>
-                    <p>Under her anointed leadership, thousands have experienced miraculous healings, spiritual deliverance, and life transformation.</p>
-
-                    <div class="about-values">
-                        <div class="about-value-item"><div class="dot"></div><span>Faith & Prayer</span></div>
-                        <div class="about-value-item"><div class="dot"></div><span>Healing & Miracles</span></div>
-                        <div class="about-value-item"><div class="dot"></div><span>Deliverance</span></div>
-                        <div class="about-value-item"><div class="dot"></div><span>Biblical Teaching</span></div>
-                        <div class="about-value-item"><div class="dot"></div><span>Revival & Worship</span></div>
-                        <div class="about-value-item"><div class="dot"></div><span>Community & Love</span></div>
-                    </div>
+                <div class="ministries-grid">
+                    <div class="ministry-card reveal"><div class="ministry-icon">🙌</div><h4>Healing Ministry</h4><p>Supernatural healing power of God. Physical, emotional, and spiritual restoration.</p></div>
+                    <div class="ministry-card reveal"><div class="ministry-icon">⚡</div><h4>Deliverance</h4><p>Breaking chains, setting captives free through the authority of Jesus Christ.</p></div>
+                    <div class="ministry-card reveal"><div class="ministry-icon">🙏</div><h4>Prayer Ministry</h4><p>Fervent, Spirit-led intercession for individuals, families, and nations.</p></div>
+                    <div class="ministry-card reveal"><div class="ministry-icon">💬</div><h4>Counselling</h4><p>Compassionate spiritual guidance and biblical counselling for all.</p></div>
+                    <div class="ministry-card reveal"><div class="ministry-icon">📖</div><h4>Bible Teaching</h4><p>In-depth, anointed teaching of God's Word that transforms minds.</p></div>
+                    <div class="ministry-card reveal"><div class="ministry-icon">🌟</div><h4>Youth Ministry</h4><p>Empowering the next generation with purpose and the fire of the Spirit.</p></div>
+                    <div class="ministry-card reveal"><div class="ministry-icon">👑</div><h4>Women's Fellowship</h4><p>A sacred space for women to grow in faith and discover their purpose.</p></div>
+                    <div class="ministry-card reveal"><div class="ministry-icon">🌍</div><h4>Evangelism</h4><p>Taking the Gospel to streets, nations, and digital platforms worldwide.</p></div>
                 </div>
             </div>
+        </section>
+    </div>
 
-            <div class="stats-grid reveal">
-                <div class="stat-card">
-                    <div class="stat-number" data-target="15000">0</div>
-                    <div class="stat-label">Souls Reached</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" data-target="5000">0</div>
-                    <div class="stat-label">Prayer Sessions</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" data-target="200">0</div>
-                    <div class="stat-label">Revival Programs</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" data-target="15">0</div>
-                    <div class="stat-label">Years of Ministry</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- MINISTRIES -->
-    <section class="ministries" id="ministries">
-        <div class="container">
-            <div class="section-header reveal">
-                <div class="section-tag">What We Do</div>
-                <h2 class="section-title">Our <span class="highlight">Ministries</span></h2>
-                <p class="section-subtitle">Each ministry arm operates under the anointing of the Holy Spirit to bring transformation.</p>
-            </div>
-
-            <div class="ministries-grid">
-                <div class="ministry-card reveal"><div class="ministry-icon">🙌</div><h4>Healing Ministry</h4><p>Supernatural healing power of God. Physical, emotional, and spiritual restoration.</p></div>
-                <div class="ministry-card reveal"><div class="ministry-icon">⚡</div><h4>Deliverance</h4><p>Breaking chains, setting captives free through the authority of Jesus Christ.</p></div>
-                <div class="ministry-card reveal"><div class="ministry-icon">🙏</div><h4>Prayer Ministry</h4><p>Fervent, Spirit-led intercession for individuals, families, and nations.</p></div>
-                <div class="ministry-card reveal"><div class="ministry-icon">💬</div><h4>Counselling</h4><p>Compassionate spiritual guidance and biblical counselling for all.</p></div>
-                <div class="ministry-card reveal"><div class="ministry-icon">📖</div><h4>Bible Teaching</h4><p>In-depth, anointed teaching of God's Word that transforms minds.</p></div>
-                <div class="ministry-card reveal"><div class="ministry-icon">🌟</div><h4>Youth Ministry</h4><p>Empowering the next generation with purpose and the fire of the Spirit.</p></div>
-                <div class="ministry-card reveal"><div class="ministry-icon">👑</div><h4>Women's Fellowship</h4><p>A sacred space for women to grow in faith and discover their purpose.</p></div>
-                <div class="ministry-card reveal"><div class="ministry-icon">🌍</div><h4>Evangelism</h4><p>Taking the Gospel to streets, nations, and digital platforms worldwide.</p></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SERMONS -->
-    <section class="sermons" id="sermons">
-        <div class="container">
-            <div class="section-header reveal">
-                <div class="section-tag">The Word</div>
-                <h2 class="section-title">Sermons & <span class="highlight">Teachings</span></h2>
-                <p class="section-subtitle">Receive the anointed Word of God that brings healing and breakthrough.</p>
-            </div>
-
-            <div class="sermon-featured reveal">
-                <div class="sermon-video-card">
-                    <div class="play-button"></div>
-                </div>
-                <div class="sermon-info">
-                    <h3>The Power of Persistent Prayer</h3>
-                    <div class="sermon-meta">
-                        <span>📅 July 14, 2026</span>
-                        <span>⏱️ 45 min</span>
-                        <span>👁️ 12.5K</span>
-                    </div>
-                    <p>Prophetess Mother Hellen delivers a powerful message on persistent, faith-filled prayer. Learn how to break through spiritual barriers and access the supernatural realm.</p>
-                    <a href="#" class="btn-3d btn-3d-primary">▶ Watch Full Message</a>
-                </div>
-            </div>
-
-            <div class="sermons-grid">
-                <div class="sermon-card reveal">
-                    <div class="sermon-card-thumb"><div class="play-btn-sm">▶</div></div>
-                    <div class="sermon-card-body">
-                        <h4>Walking in Divine Authority</h4>
-                        <p class="date">July 7, 2026 • 38 min</p>
-                    </div>
-                </div>
-                <div class="sermon-card reveal">
-                    <div class="sermon-card-thumb"><div class="play-btn-sm">▶</div></div>
-                    <div class="sermon-card-body">
-                        <h4>The Blood That Speaks</h4>
-                        <p class="date">June 30, 2026 • 52 min</p>
-                    </div>
-                </div>
-                <div class="sermon-card reveal">
-                    <div class="sermon-card-thumb"><div class="play-btn-sm">▶</div></div>
-                    <div class="sermon-card-body">
-                        <h4>Breaking Generational Curses</h4>
-                        <p class="date">June 23, 2026 • 41 min</p>
+    <!-- ============================================
+         PAGE 4: SERMONS (COMING SOON)
+    ============================================ -->
+    <div class="page" id="sermons">
+        <section class="sermons-page">
+            <div class="container">
+                <div class="coming-soon-wrapper reveal-zoom">
+                    <div class="coming-soon-icon">📡</div>
+                    <h2 class="coming-soon-title">Coming Soon</h2>
+                    <p class="coming-soon-text">Sermons & Teachings are being prepared. Anointed messages from Prophetess Mother Hellen will be available here soon. Stay connected and be blessed.</p>
+                    <div class="coming-soon-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
-    <!-- DAILY DEVOTION -->
-    <section class="devotion" id="devotion">
-        <div class="container">
-            <div class="section-header reveal">
-                <div class="section-tag">Daily Bread</div>
-                <h2 class="section-title">Today's <span class="highlight">Devotion</span></h2>
-                <p class="section-subtitle">A daily encounter with God's Word to strengthen your spirit.</p>
-            </div>
-
-            <div class="devotion-card reveal-zoom">
-                <div class="verse-icon">📖</div>
-                <p class="verse" id="dailyVerse">"But whoever drinks of the water that I shall give him will never thirst. But the water that I shall give him will become in him a fountain of water springing up into everlasting life."</p>
-                <p class="reference" id="dailyReference">— John 4:14</p>
-                <p class="reflection">Today, remember that Christ is the well of living water within you. No matter how dry your season feels, His presence flows deep — refreshing, renewing, and restoring every area of your life. Drink deeply from His Word today.</p>
-                <div class="prayer-text">
-                    <strong>Today's Prayer</strong><br><br>
-                    Heavenly Father, I thank You for the living water that flows from Your throne. Quench every thirst of my soul. Let rivers of revival flow from my innermost being. Fill me afresh with Your Holy Spirit today. In Jesus' mighty name, Amen.
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- TESTIMONIES -->
-    <section class="testimonies" id="testimonies">
-        <div class="container">
-            <div class="section-header reveal">
-                <div class="section-tag">Miracles</div>
-                <h2 class="section-title">Testimonies of <span class="highlight">God's Power</span></h2>
-                <p class="section-subtitle">Real stories of transformation, healing, and divine intervention.</p>
-            </div>
-
-            <div class="testimony-carousel reveal">
-                <div class="testimony-slide active">
-                    <div class="testimony-quote">"</div>
-                    <p class="testimony-text">I was diagnosed with a terminal illness and given three months to live. After Prophetess Mother Hellen prayed for me, my doctors confirmed complete healing. God is faithful!</p>
-                    <p class="testimony-author">Sister Grace M.</p>
-                    <p class="testimony-location">Lagos, Nigeria</p>
-                </div>
-                <div class="testimony-slide">
-                    <div class="testimony-quote">"</div>
-                    <p class="testimony-text">For seven years, I was bound by addiction and depression. During the deliverance service, I felt chains literally break off my spirit. Today, I am completely free.</p>
-                    <p class="testimony-author">Brother David K.</p>
-                    <p class="testimony-location">Accra, Ghana</p>
-                </div>
-                <div class="testimony-slide">
-                    <div class="testimony-quote">"</div>
-                    <p class="testimony-text">My marriage was on the brink of destruction. Through the counselling ministry and prayer sessions, God restored our relationship. We are now stronger than ever.</p>
-                    <p class="testimony-author">Mr. & Mrs. Thompson</p>
-                    <p class="testimony-location">London, United Kingdom</p>
-                </div>
-                <div class="testimony-slide">
-                    <div class="testimony-quote">"</div>
-                    <p class="testimony-text">I was barren for twelve years. After the prayer conference, I conceived naturally. My baby girl is now two years old. The God of Destiny Praise Chapel is the God of miracles!</p>
-                    <p class="testimony-author">Sister Ruth A.</p>
-                    <p class="testimony-location">Abuja, Nigeria</p>
+    <!-- ============================================
+         PAGE 5: PRAYER
+    ============================================ -->
+    <div class="page" id="prayer">
+        <section class="prayer-page">
+            <div class="container">
+                <div class="section-header reveal">
+                    <div class="section-tag">We Pray With You</div>
+                    <h2 class="section-title">Submit a <span class="highlight">Prayer Request</span></h2>
+                    <p class="section-subtitle">No matter your situation, our prayer team is ready to stand in faith with you.</p>
                 </div>
 
-                <div class="testimony-dots">
-                    <div class="testimony-dot active" data-slide="0"></div>
-                    <div class="testimony-dot" data-slide="1"></div>
-                    <div class="testimony-dot" data-slide="2"></div>
-                    <div class="testimony-dot" data-slide="3"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PRAYER REQUEST -->
-    <section class="prayer-section" id="prayer">
-        <div class="container">
-            <div class="section-header reveal">
-                <div class="section-tag">We Pray With You</div>
-                <h2 class="section-title">Submit a <span class="highlight">Prayer Request</span></h2>
-                <p class="section-subtitle">No matter your situation, our prayer team is ready to stand in faith with you.</p>
-            </div>
-
-            <div class="prayer-form-wrapper reveal-zoom">
-                <form id="prayerForm" onsubmit="submitPrayer(event)">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="prayerName">Full Name</label>
-                            <input type="text" id="prayerName" placeholder="Your full name" required>
+                <div class="prayer-form-wrapper reveal-zoom">
+                    <form id="prayerForm" onsubmit="submitPrayer(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="prayerName">Full Name</label>
+                                <input type="text" id="prayerName" placeholder="Your full name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="prayerCountry">Country</label>
+                                <input type="text" id="prayerCountry" placeholder="Your country">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="prayerPhone">Phone Number</label>
+                                <input type="tel" id="prayerPhone" placeholder="+000 000 000 0000">
+                            </div>
+                            <div class="form-group">
+                                <label for="prayerWhatsApp">WhatsApp Number</label>
+                                <input type="tel" id="prayerWhatsApp" placeholder="Your WhatsApp number">
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="prayerCountry">Country</label>
-                            <input type="text" id="prayerCountry" placeholder="Your country">
+                            <label for="prayerRequest">Your Prayer Request</label>
+                            <textarea id="prayerRequest" placeholder="Share your prayer need..." required></textarea>
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="prayerPhone">Phone Number</label>
-                            <input type="tel" id="prayerPhone" placeholder="+000 000 000 0000">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="anonymous">
+                            <label for="anonymous">I wish to remain anonymous</label>
                         </div>
-                        <div class="form-group">
-                            <label for="prayerWhatsApp">WhatsApp Number</label>
-                            <input type="tel" id="prayerWhatsApp" placeholder="Your WhatsApp number">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="prayerRequest">Your Prayer Request</label>
-                        <textarea id="prayerRequest" placeholder="Share your prayer need..." required></textarea>
-                    </div>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="anonymous">
-                        <label for="anonymous">I wish to remain anonymous</label>
-                    </div>
-                    <button type="submit" class="form-submit">🙏 Submit Prayer Request</button>
-                </form>
+                        <button type="submit" class="form-submit">🙏 Submit Prayer Request</button>
+                    </form>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
-    <!-- GALLERY -->
-    <section class="gallery" id="gallery">
-        <div class="container">
-            <div class="section-header reveal">
-                <div class="section-tag">Moments</div>
-                <h2 class="section-title">Ministry <span class="highlight">Gallery</span></h2>
-                <p class="section-subtitle">Glimpses of God's power at work through Destiny Praise Chapel.</p>
-            </div>
+    <!-- ============================================
+         PAGE 6: GALLERY
+    ============================================ -->
+    <div class="page" id="gallery">
+        <section class="gallery-page">
+            <div class="container">
+                <div class="section-header reveal">
+                    <div class="section-tag">Moments</div>
+                    <h2 class="section-title">Ministry <span class="highlight">Gallery</span></h2>
+                    <p class="section-subtitle">Glimpses of God's power at work through Destiny Praise Chapel.</p>
+                </div>
 
-            <div class="gallery-masonry reveal">
-                <div class="gallery-item" onclick="openLightbox('Healing Crusade 2026')"><div class="gallery-item-inner">Healing Crusade</div><div class="gallery-overlay"><span>⊕</span></div></div>
-                <div class="gallery-item" onclick="openLightbox('Prophetess Ministering')"><div class="gallery-item-inner">Prophetess Ministering</div><div class="gallery-overlay"><span>⊕</span></div></div>
-                <div class="gallery-item" onclick="openLightbox('Worship Night')"><div class="gallery-item-inner">Worship Night</div><div class="gallery-overlay"><span>⊕</span></div></div>
-                <div class="gallery-item" onclick="openLightbox('Youth Conference')"><div class="gallery-item-inner">Youth Conference</div><div class="gallery-overlay"><span>⊕</span></div></div>
-                <div class="gallery-item" onclick="openLightbox('Revival Service')"><div class="gallery-item-inner">Revival Service</div><div class="gallery-overlay"><span>⊕</span></div></div>
-                <div class="gallery-item" onclick="openLightbox('Prayer Session')"><div class="gallery-item-inner">Prayer Session</div><div class="gallery-overlay"><span>⊕</span></div></div>
-                <div class="gallery-item" onclick="openLightbox('Community Outreach')"><div class="gallery-item-inner">Community Outreach</div><div class="gallery-overlay"><span>⊕</span></div></div>
-                <div class="gallery-item" onclick="openLightbox('Women Fellowship')"><div class="gallery-item-inner">Women Fellowship</div><div class="gallery-overlay"><span>⊕</span></div></div>
+                <div class="gallery-masonry reveal">
+                    <div class="gallery-item" onclick="openLightbox('Healing Crusade 2026')"><div class="gallery-item-inner">Healing Crusade</div><div class="gallery-overlay"><span>⊕</span></div></div>
+                    <div class="gallery-item" onclick="openLightbox('Prophetess Ministering')"><div class="gallery-item-inner">Prophetess Ministering</div><div class="gallery-overlay"><span>⊕</span></div></div>
+                    <div class="gallery-item" onclick="openLightbox('Worship Night')"><div class="gallery-item-inner">Worship Night</div><div class="gallery-overlay"><span>⊕</span></div></div>
+                    <div class="gallery-item" onclick="openLightbox('Youth Conference')"><div class="gallery-item-inner">Youth Conference</div><div class="gallery-overlay"><span>⊕</span></div></div>
+                    <div class="gallery-item" onclick="openLightbox('Revival Service')"><div class="gallery-item-inner">Revival Service</div><div class="gallery-overlay"><span>⊕</span></div></div>
+                    <div class="gallery-item" onclick="openLightbox('Prayer Session')"><div class="gallery-item-inner">Prayer Session</div><div class="gallery-overlay"><span>⊕</span></div></div>
+                    <div class="gallery-item" onclick="openLightbox('Community Outreach')"><div class="gallery-item-inner">Community Outreach</div><div class="gallery-overlay"><span>⊕</span></div></div>
+                    <div class="gallery-item" onclick="openLightbox('Women Fellowship')"><div class="gallery-item-inner">Women Fellowship</div><div class="gallery-overlay"><span>⊕</span></div></div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
     <!-- LIGHTBOX -->
     <div class="lightbox" id="lightbox">
@@ -3019,80 +2434,66 @@
         <div class="lightbox-content" id="lightboxContent"><p>Image Placeholder</p></div>
     </div>
 
-    <!-- SOCIAL -->
-    <section class="social-section" id="social">
-        <div class="container">
-            <div class="section-header reveal">
-                <div class="section-tag">Connect</div>
-                <h2 class="section-title">Follow Our <span class="highlight">Ministry</span></h2>
-                <p class="section-subtitle">Stay connected with daily inspiration, live services, and prayer updates.</p>
-            </div>
+    <!-- ============================================
+         PAGE 7: CONTACT
+    ============================================ -->
+    <div class="page" id="contact">
+        <section class="contact-page">
+            <div class="container">
+                <div class="section-header reveal">
+                    <div class="section-tag">Reach Us</div>
+                    <h2 class="section-title">Get in <span class="highlight">Touch</span></h2>
+                    <p class="section-subtitle">We would love to hear from you. Reach out via WhatsApp for prayer, partnership, or any inquiry.</p>
+                </div>
 
-            <div class="social-links reveal">
-                <a href="https://tiktok.com/@prophetess_hsagbata" target="_blank" class="social-link tiktok" aria-label="TikTok">🎵</a>
-                <a href="#" target="_blank" class="social-link facebook" aria-label="Facebook">f</a>
-                <a href="#" target="_blank" class="social-link youtube" aria-label="YouTube">▶</a>
-                <a href="https://wa.me/231775259647" target="_blank" class="social-link whatsapp" aria-label="WhatsApp">💬</a>
-            </div>
-
-            <p style="margin-top: 24px; color: var(--text-secondary); font-family: 'Share Tech Mono', monospace; font-size: 0.8rem; letter-spacing: 2px;" class="reveal">TIKTOK: <span style="color: var(--sky-blue);">@prophetess_hsagbata</span></p>
-        </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="section-header reveal">
-                <div class="section-tag">Reach Us</div>
-                <h2 class="section-title">Get in <span class="highlight">Touch</span></h2>
-                <p class="section-subtitle">We would love to hear from you. Reach out for prayer, partnership, or any inquiry via WhatsApp.</p>
-            </div>
-
-            <div class="contact-grid">
-                <div class="contact-info reveal-left">
-                    <div class="contact-item">
-                        <div class="icon">📍</div>
-                        <div>
-                            <h5>Ministry Address</h5>
-                            <p>Destiny Praise Chapel, Healing and Deliverance Ministry International</p>
+                <div class="contact-grid">
+                    <div class="contact-info reveal-left">
+                        <div class="contact-item">
+                            <div class="icon">📍</div>
+                            <div>
+                                <h5>Ministry Address</h5>
+                                <p>Destiny Praise Chapel, Healing and Deliverance Ministry International</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="icon">💬</div>
+                            <div>
+                                <h5>WhatsApp — Speak with Mother</h5>
+                                <p><a href="https://wa.me/231775259647" target="_blank">+231 77 525 9647</a></p>
+                                <p style="font-size: 0.9rem; margin-top: 4px; color: var(--text-dim);">All communications via WhatsApp</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="icon">📞</div>
+                            <div>
+                                <h5>Phone Number</h5>
+                                <p><a href="tel:+231775259647">+231 77 525 9647</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="icon">🕐</div>
+                            <div>
+                                <h5>Service Times</h5>
+                                <p>Sunday: 9:00 AM | Wednesday: 6:00 PM | Friday: 7:00 PM</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="contact-item">
-                        <div class="icon">💬</div>
-                        <div>
-                            <h5>WhatsApp</h5>
-                            <p><a href="https://wa.me/231775259647" target="_blank">+231 77 525 9647</a></p>
-                            <p style="font-size: 0.8rem; margin-top: 4px; color: var(--text-dim);">All communications via WhatsApp</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="icon">📞</div>
-                        <div>
-                            <h5>Phone Number</h5>
-                            <p><a href="tel:+231775259647">+231 77 525 9647</a></p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="icon">🕐</div>
-                        <div>
-                            <h5>Service Times</h5>
-                            <p>Sunday: 9:00 AM | Wednesday: 6:00 PM | Friday: 7:00 PM</p>
+
+                    <div class="contact-map reveal-right">
+                        <div class="contact-map-placeholder">
+                            <div class="map-icon">🗺️</div>
+                            <p>Google Map Embed<br>Ministry Location</p>
                         </div>
                     </div>
                 </div>
-
-                <div class="contact-map reveal-right">
-                    <div class="contact-map-placeholder">
-                        <div class="map-icon">🗺️</div>
-                        <p>Google Map Embed<br>Ministry Location</p>
-                    </div>
-                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
-    <!-- FOOTER -->
-    <footer class="footer">
+<!-- PART 2 CONTINUES BELOW -->    <!-- ============================================
+         FOOTER (appears on all pages except home)
+    ============================================ -->
+    <footer class="footer" id="mainFooter">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
@@ -3106,39 +2507,32 @@
                 <div>
                     <h4>Quick Links</h4>
                     <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#ministries">Ministries</a></li>
-                        <li><a href="#sermons">Sermons</a></li>
-                        <li><a href="#gallery">Gallery</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a onclick="navigateTo('home')">Home</a></li>
+                        <li><a onclick="navigateTo('about')">About Us</a></li>
+                        <li><a onclick="navigateTo('ministries')">Ministries</a></li>
+                        <li><a onclick="navigateTo('sermons')">Sermons</a></li>
+                        <li><a onclick="navigateTo('gallery')">Gallery</a></li>
+                        <li><a onclick="navigateTo('contact')">Contact</a></li>
                     </ul>
                 </div>
 
                 <div>
                     <h4>Ministry</h4>
                     <ul class="footer-links">
-                        <li><a href="#prayer">Prayer Request</a></li>
-                        <li><a href="#devotion">Daily Devotion</a></li>
-                        <li><a href="#testimonies">Testimonies</a></li>
-                        <li><a href="https://wa.me/231775259647" target="_blank">WhatsApp Us</a></li>
-                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a onclick="navigateTo('prayer')">Prayer Request</a></li>
+                        <li><a href="https://wa.me/231775259647" target="_blank">WhatsApp Mother</a></li>
+                        <li><a onclick="navigateTo('contact')">Contact Us</a></li>
+                        <li><a href="https://tiktok.com/@prophetess_hsagbata" target="_blank">TikTok</a></li>
                         <li><a href="#">Volunteer</a></li>
                     </ul>
-                </div>
-
-                <div>
-                    <h4>Newsletter</h4>
-                    <p style="color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 16px;">Receive weekly devotionals and ministry news in your inbox.</p>
-                    <div class="newsletter-form">
-                        <input type="email" placeholder="Your email" aria-label="Email for newsletter">
-                        <button>Subscribe</button>
-                    </div>
                 </div>
             </div>
 
             <div class="footer-bottom">
                 <p>© 2026 DESTINY PRAISE CHAPEL MINISTRY INTERNATIONAL</p>
+                <div class="footer-powered">
+                    Powered by <strong>KS1 Empire Global Foundation (KS1EGF)</strong>
+                </div>
                 <div class="footer-bottom-links">
                     <a href="#">Privacy Policy</a>
                     <a href="#">Terms of Service</a>
@@ -3148,20 +2542,68 @@
         </div>
     </footer>
 
-    <!-- FLOATING BUTTONS -->
-    <a href="https://wa.me/231775259647" target="_blank" class="floating-whatsapp" aria-label="WhatsApp">💬</a>
-    <a href="#prayer" class="floating-prayer" aria-label="Prayer">🙏</a>
+    <!-- ============================================
+         FLOATING BUTTONS - WhatsApp + Share only
+    ============================================ -->
+    <a href="https://wa.me/231775259647" target="_blank" class="floating-whatsapp" aria-label="WhatsApp Mother Hellen">💬</a>
+    <button class="floating-share" id="shareBtn" aria-label="Share Website">🔗</button>
     <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
 
     <script>
-        /* PRELOADER */
+        /* ============================================
+           PAGE NAVIGATION SYSTEM
+        ============================================ */
+        function navigateTo(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(function(page) {
+                page.classList.remove('active');
+            });
+
+            // Show target page
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+
+            // Update nav active state
+            document.querySelectorAll('.nav-links a').forEach(function(link) {
+                link.classList.remove('active-link');
+                if (link.getAttribute('data-page') === pageId) {
+                    link.classList.add('active-link');
+                }
+            });
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'instant' });
+
+            // Show/hide footer (hide on home page)
+            const footer = document.getElementById('mainFooter');
+            if (pageId === 'home') {
+                footer.style.display = 'none';
+            } else {
+                footer.style.display = 'block';
+            }
+
+            // Trigger reveal animations
+            setTimeout(function() {
+                revealOnScroll();
+            }, 100);
+        }
+
+        /* ============================================
+           PRELOADER
+        ============================================ */
         window.addEventListener('load', function() {
             setTimeout(function() {
                 document.getElementById('preloader').classList.add('hidden');
+                // Hide footer on initial load (home page)
+                document.getElementById('mainFooter').style.display = 'none';
             }, 2500);
         });
 
-        /* TYPING ANIMATION FOR MINISTRY NAME */
+        /* ============================================
+           TYPING ANIMATION FOR MINISTRY NAME
+        ============================================ */
         (function initTypingLogo() {
             const el = document.getElementById('typingLogo');
             if (!el) return;
@@ -3205,9 +2647,12 @@
             setTimeout(type, 1000);
         })();
 
-        /* PARTICLES */
+        /* ============================================
+           PARTICLES
+        ============================================ */
         (function createParticles() {
             const container = document.getElementById('particles');
+            if (!container) return;
             for (let i = 0; i < 50; i++) {
                 const p = document.createElement('div');
                 p.classList.add('particle');
@@ -3222,7 +2667,9 @@
             }
         })();
 
-        /* SCROLL EFFECTS */
+        /* ============================================
+           SCROLL EFFECTS
+        ============================================ */
         const navbar = document.getElementById('navbar');
         const scrollProgress = document.getElementById('scrollProgress');
         const backToTop = document.getElementById('backToTop');
@@ -3230,7 +2677,7 @@
         window.addEventListener('scroll', function() {
             const scrollTop = window.pageYOffset;
             const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrollPercent = (scrollTop / docHeight) * 100;
+            const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
 
             scrollProgress.style.width = scrollPercent + '%';
 
@@ -3245,13 +2692,17 @@
             } else {
                 backToTop.classList.remove('visible');
             }
+
+            revealOnScroll();
         });
 
         backToTop.addEventListener('click', function() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        /* MOBILE MENU */
+        /* ============================================
+           MOBILE MENU
+        ============================================ */
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobileMenu');
 
@@ -3267,7 +2718,9 @@
             document.body.style.overflow = '';
         }
 
-        /* SCROLL REVEAL */
+        /* ============================================
+           SCROLL REVEAL
+        ============================================ */
         function revealOnScroll() {
             const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-zoom');
             reveals.forEach(function(el) {
@@ -3279,68 +2732,9 @@
             });
         }
 
-        window.addEventListener('scroll', revealOnScroll);
-        window.addEventListener('load', revealOnScroll);
-
-        /* COUNTER ANIMATION */
-        let counterAnimated = false;
-
-        function animateCounters() {
-            if (counterAnimated) return;
-            const statsSection = document.querySelector('.stats-grid');
-            if (!statsSection) return;
-
-            const rect = statsSection.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
-                counterAnimated = true;
-                const counters = document.querySelectorAll('.stat-number[data-target]');
-                counters.forEach(function(counter) {
-                    const target = parseInt(counter.getAttribute('data-target'));
-                    const step = target / 125;
-                    let current = 0;
-                    const timer = setInterval(function() {
-                        current += step;
-                        if (current >= target) {
-                            current = target;
-                            clearInterval(timer);
-                        }
-                        counter.textContent = Math.floor(current).toLocaleString() + '+';
-                    }, 16);
-                });
-            }
-        }
-
-        window.addEventListener('scroll', animateCounters);
-
-        /* TESTIMONY CAROUSEL */
-        const slides = document.querySelectorAll('.testimony-slide');
-        const dots = document.querySelectorAll('.testimony-dot');
-        let currentSlide = 0;
-        let slideInterval;
-
-        function showSlide(index) {
-            slides.forEach(function(s) { s.classList.remove('active'); });
-            dots.forEach(function(d) { d.classList.remove('active'); });
-            slides[index].classList.add('active');
-            dots[index].classList.add('active');
-            currentSlide = index;
-        }
-
-        function nextSlide() {
-            showSlide((currentSlide + 1) % slides.length);
-        }
-
-        dots.forEach(function(dot) {
-            dot.addEventListener('click', function() {
-                showSlide(parseInt(this.getAttribute('data-slide')));
-                clearInterval(slideInterval);
-                slideInterval = setInterval(nextSlide, 5000);
-            });
-        });
-
-        slideInterval = setInterval(nextSlide, 5000);
-
-        /* PRAYER FORM */
+        /* ============================================
+           PRAYER FORM
+        ============================================ */
         function submitPrayer(e) {
             e.preventDefault();
             const btn = e.target.querySelector('.form-submit');
@@ -3357,11 +2751,13 @@
             }, 4000);
         }
 
-        /* LIGHTBOX */
+        /* ============================================
+           LIGHTBOX
+        ============================================ */
         function openLightbox(title) {
             const lightbox = document.getElementById('lightbox');
             const content = document.getElementById('lightboxContent');
-            content.innerHTML = '<p style="font-family: Orbitron, sans-serif; font-size: 1.3rem; letter-spacing: 2px;">' + title + '</p><p style="margin-top: 12px; opacity: 0.5; font-family: Share Tech Mono, monospace; font-size: 0.75rem; letter-spacing: 2px;">IMAGE PLACEHOLDER</p>';
+            content.innerHTML = '<p style="font-family: Bebas Neue, sans-serif; font-size: 2rem; letter-spacing: 3px;">' + title + '</p><p style="margin-top: 12px; opacity: 0.5; font-family: Share Tech Mono, monospace; font-size: 0.9rem; letter-spacing: 2px;">IMAGE PLACEHOLDER</p>';
             lightbox.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
@@ -3379,37 +2775,71 @@
             if (e.key === 'Escape') closeLightbox();
         });
 
-        /* SMOOTH SCROLL */
-        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
+        /* ============================================
+           SHARE BUTTON FUNCTIONALITY
+        ============================================ */
+        const shareBtn = document.getElementById('shareBtn');
+        const shareToast = document.getElementById('shareToast');
+
+        shareBtn.addEventListener('click', async function() {
+            const shareData = {
+                title: 'Destiny Praise Chapel - Healing & Deliverance Ministry',
+                text: 'Visit Destiny Praise Chapel Healing and Deliverance Ministry International led by Prophetess Mother Hellen. Experience healing, deliverance, and spiritual transformation.',
+                url: window.location.href
+            };
+
+            // Try native share API first
+            if (navigator.share) {
+                try {
+                    await navigator.share(shareData);
+                } catch (err) {
+                    // User cancelled or error, fallback to clipboard
+                    copyToClipboard();
                 }
-            });
+            } else {
+                copyToClipboard();
+            }
         });
 
-        /* DAILY VERSE */
-        const bibleVerses = [
-            { verse: '"But whoever drinks of the water that I shall give him will never thirst. But the water that I shall give him will become in him a fountain of water springing up into everlasting life."', ref: '— John 4:14' },
-            { verse: '"The LORD is my shepherd; I shall not want. He maketh me to lie down in green pastures."', ref: '— Psalm 23:1-2' },
-            { verse: '"But they that wait upon the LORD shall renew their strength; they shall mount up with wings as eagles."', ref: '— Isaiah 40:31' },
-            { verse: '"For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life."', ref: '— John 3:16' },
-            { verse: '"The LORD is my light and my salvation; whom shall I fear?"', ref: '— Psalm 27:1' },
-            { verse: '"Cast all your anxiety on him because he cares for you."', ref: '— 1 Peter 5:7' },
-            { verse: '"Be strong and courageous. Do not be afraid; do not be discouraged, for the LORD your God will be with you."', ref: '— Joshua 1:9' }
-        ];
+        function copyToClipboard() {
+            const url = window.location.href;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(url).then(function() {
+                    showToast();
+                }).catch(function() {
+                    fallbackCopy(url);
+                });
+            } else {
+                fallbackCopy(url);
+            }
+        }
 
-        const today = new Date().getDay();
-        const todayVerse = bibleVerses[today % bibleVerses.length];
-        document.getElementById('dailyVerse').textContent = todayVerse.verse;
-        document.getElementById('dailyReference').textContent = todayVerse.ref;
+        function fallbackCopy(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                showToast();
+            } catch (err) {
+                console.error('Copy failed');
+            }
+            document.body.removeChild(textarea);
+        }
 
-        /* 3D TILT EFFECT ON MINISTRY CARDS */
+        function showToast() {
+            shareToast.classList.add('show');
+            setTimeout(function() {
+                shareToast.classList.remove('show');
+            }, 3000);
+        }
+
+        /* ============================================
+           3D TILT EFFECT ON MINISTRY CARDS
+        ============================================ */
         document.querySelectorAll('.ministry-card').forEach(function(card) {
             card.addEventListener('mousemove', function(e) {
                 const rect = card.getBoundingClientRect();
@@ -3427,20 +2857,9 @@
             });
         });
 
-        /* NEWSLETTER */
-        document.querySelector('.newsletter-form button').addEventListener('click', function(e) {
-            e.preventDefault();
-            const input = this.parentElement.querySelector('input');
-            if (input.value) {
-                this.textContent = '✓ SUBSCRIBED';
-                input.value = '';
-                setTimeout(function() {
-                    document.querySelector('.newsletter-form button').textContent = 'Subscribe';
-                }, 3000);
-            }
-        });
-
-        /* MOUSE PARALLAX ON HERO */
+        /* ============================================
+           MOUSE PARALLAX ON HERO
+        ============================================ */
         const heroContent = document.querySelector('.hero-content');
         window.addEventListener('mousemove', function(e) {
             if (window.innerWidth < 992) return;
@@ -3451,10 +2870,31 @@
             }
         });
 
-        /* CONSOLE */
+        /* ============================================
+           HANDLE HASH NAVIGATION (for direct links)
+        ============================================ */
+        window.addEventListener('hashchange', function() {
+            const hash = window.location.hash.replace('#', '');
+            if (hash && document.getElementById(hash)) {
+                navigateTo(hash);
+            }
+        });
+
+        // Check initial hash
+        if (window.location.hash) {
+            const hash = window.location.hash.replace('#', '');
+            if (hash !== 'home' && document.getElementById(hash)) {
+                navigateTo(hash);
+            }
+        }
+
+        /* ============================================
+           CONSOLE GREETING
+        ============================================ */
         console.log('%c✝ DESTINY PRAISE CHAPEL', 'font-size: 24px; font-weight: bold; color: #FFFFFF; font-family: monospace;');
-        console.log('%cA WELL OF LIVING WATER', 'font-size: 12px; color: #4DA8DA; font-family: monospace; letter-spacing: 3px;');
-        console.log('%c"Whoever drinks of the water that I shall give him will never thirst." - John 4:14', 'font-size: 11px; color: #7FB5E8; font-style: italic;');
+        console.log('%cA WELL OF LIVING WATER', 'font-size: 14px; color: #4DA8DA; font-family: monospace; letter-spacing: 3px;');
+        console.log('%cPowered by KS1 Empire Global Foundation (KS1EGF)', 'font-size: 11px; color: #7FB5E8; font-family: monospace;');
+        console.log('%c"Whoever drinks of the water that I shall give him will never thirst." - John 4:14', 'font-size: 11px; color: #C8D5E8; font-style: italic;');
     </script>
 </body>
 </html>
