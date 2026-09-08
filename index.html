@@ -50,7 +50,6 @@
         .page#home { padding-top: 0; }
         @keyframes pageFadeIn { from { opacity: 0; transform: translateY(20px) perspective(1000px) rotateX(2deg); } to { opacity: 1; transform: translateY(0) perspective(1000px) rotateX(0deg); } }
 
-        /* PRELOADER */
         .preloader {
             position: fixed; inset: 0; background: var(--deep-blue-dark); z-index: 99999;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -74,7 +73,6 @@
 
         .scroll-progress { position: fixed; top: 0; left: 0; height: 2px; background: linear-gradient(90deg, var(--white), var(--sky-blue)); z-index: 10001; width: 0; box-shadow: var(--glow-white); }
 
-        /* NAVIGATION */
         .navbar { position: fixed; top: 0; width: 100%; z-index: 10000; padding: 20px 0; transition: all 0.4s ease; }
         .navbar.scrolled { background: rgba(5, 11, 31, 0.95); backdrop-filter: blur(20px); padding: 12px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
         .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; }
@@ -90,8 +88,8 @@
         .nav-logo-text .typing-text { display: inline-block; border-right: 3px solid var(--sky-blue); padding-right: 4px; animation: cursorBlink 0.8s step-end infinite; white-space: nowrap; overflow: hidden; }
         @keyframes cursorBlink { 0%, 100% { border-color: var(--sky-blue); } 50% { border-color: transparent; } }
         .nav-logo-text span { display: block; font-family: 'Share Tech Mono', monospace; font-size: 0.7rem; color: var(--ice-blue); letter-spacing: 3px; margin-top: 2px; }
-        .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
-        .nav-links a { text-decoration: none; color: var(--text-secondary); font-size: 0.95rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; transition: all 0.3s ease; position: relative; padding: 4px 0; cursor: pointer; }
+        .nav-links { display: flex; align-items: center; gap: 24px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--text-secondary); font-size: 0.9rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; transition: all 0.3s ease; position: relative; padding: 4px 0; cursor: pointer; }
         .nav-links a::before { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--white); transition: width 0.3s ease; }
         .nav-links a:hover, .nav-links a.active-link { color: var(--white); text-shadow: var(--glow-white); }
         .nav-links a:hover::before, .nav-links a.active-link::before { width: 100%; }
@@ -107,7 +105,6 @@
         .mobile-menu a { text-decoration: none; color: var(--text-secondary); font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 4px; text-transform: uppercase; transition: all 0.3s ease; cursor: pointer; }
         .mobile-menu a:hover { color: var(--white); }
 
-        /* HERO SECTION */
         .hero {
             min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; perspective: 1200px;
             background: url('https://i.ibb.co/b5r2wkC7/IMG-9177-Copy.jpg') no-repeat center 25% / cover;
@@ -158,7 +155,6 @@
         .section-title .highlight { background: linear-gradient(135deg, var(--white), var(--ice-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .section-subtitle { font-size: 1.15rem; color: var(--text-secondary); max-width: 700px; margin: 0 auto; font-weight: 500; line-height: 1.8; }
 
-        /* PAGE BACKGROUNDS (Transparent & Beautiful) */
         .page-bg {
             position: absolute; inset: 0;
             background-size: cover; background-position: center;
@@ -167,7 +163,6 @@
         }
         @keyframes bgSlowZoom { 0% { transform: scale(1); } 100% { transform: scale(1.15); } }
 
-        /* ABOUT SECTION */
         .about-page { background: var(--deep-blue-dark); position: relative; padding: 120px 0 100px; }
         .about-page .page-bg { background-image: url('https://i.ibb.co/nq3L9XKS/IMG-9168.jpg'); opacity: 0.08; }
         .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
@@ -178,8 +173,6 @@
             transition: transform 0.5s ease; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
         .about-image:hover { transform: rotateY(0deg) scale(1.02); }
-        
-        /* 3D Moving Image replacing the cross placeholder */
         .about-main-image {
             width: 100%; height: 100%; object-fit: cover; object-position: center 20%;
             animation: panRightToLeft3D 18s ease-in-out infinite alternate;
@@ -188,7 +181,6 @@
             0% { transform: perspective(1200px) rotateY(4deg) translateX(6%) scale(1.1); }
             100% { transform: perspective(1200px) rotateY(-4deg) translateX(-6%) scale(1.1); }
         }
-
         .about-image-frame { position: absolute; top: 20px; left: 20px; right: -20px; bottom: -20px; border: 1px solid var(--white); border-radius: 12px; opacity: 0.2; z-index: -1; }
         .about-floating-card { position: absolute; bottom: -20px; left: -20px; background: rgba(10, 21, 53, 0.9); backdrop-filter: blur(20px); border: 1px solid var(--glass-border); padding: 16px 24px; border-radius: 8px; display: flex; align-items: center; gap: 12px; animation: float 4s ease-in-out infinite; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); z-index: 2; }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
@@ -204,7 +196,6 @@
         .about-value-item .dot { width: 8px; height: 8px; background: var(--white); border-radius: 50%; box-shadow: 0 0 8px var(--white); flex-shrink: 0; }
         .about-value-item span { font-size: 1rem; font-weight: 700; }
 
-        /* MINISTRIES */
         .ministries-page { background: var(--deep-blue); position: relative; padding: 120px 0 100px; }
         .ministries-page .page-bg { background-image: url('https://i.ibb.co/sJkrHcRF/IMG-9186-Copy.jpg'); opacity: 0.07; }
         .ministries-page::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--sky-blue), transparent); z-index: 1; }
@@ -216,7 +207,6 @@
         .ministry-card h4 { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; margin-bottom: 12px; letter-spacing: 2px; text-transform: uppercase; }
         .ministry-card p { font-size: 1rem; color: var(--text-secondary); line-height: 1.7; font-weight: 500; }
 
-        /* SERMONS */
         .sermons-page { background: var(--deep-blue-dark); position: relative; padding: 120px 0 100px; min-height: 100vh; display: flex; align-items: center; }
         .sermons-page .page-bg { background-image: url('https://i.ibb.co/SwWHXr97/IMG-9171.jpg'); opacity: 0.06; }
         .coming-soon-wrapper { text-align: center; max-width: 800px; margin: 0 auto; padding: 60px 40px; background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: 16px; box-shadow: 0 6px 0 rgba(0,0,0,0.3), 0 12px 30px rgba(0,0,0,0.3); position: relative; overflow: hidden; transform-style: preserve-3d; transition: transform 0.5s ease; }
@@ -232,7 +222,6 @@
         .coming-soon-dots span:nth-child(3) { animation-delay: 0.4s; }
         @keyframes dotPulse { 0%, 80%, 100% { transform: scale(0.6); opacity: 0.5; } 40% { transform: scale(1); opacity: 1; } }
 
-        /* PRAYER */
         .prayer-page { background: var(--deep-blue); position: relative; padding: 120px 0 100px; }
         .prayer-page .page-bg { background-image: url('https://i.ibb.co/SwWHXr97/IMG-9171.jpg'); opacity: 0.05; }
         .prayer-form-wrapper { max-width: 750px; margin: 0 auto; padding: 50px; background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: 12px; position: relative; overflow: hidden; box-shadow: 0 6px 0 rgba(0,0,0,0.3), 0 12px 30px rgba(0,0,0,0.3); transform-style: preserve-3d; transition: transform 0.5s ease; }
@@ -250,7 +239,35 @@
         .form-submit { width: 100%; padding: 18px; background: linear-gradient(135deg, var(--white), var(--white-soft)); color: var(--deep-blue); border: none; border-radius: 8px; font-size: 1rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 6px 0 var(--deep-blue-light), 0 8px 20px rgba(255,255,255,0.25); }
         .form-submit:hover { transform: translateY(-3px); box-shadow: 0 9px 0 var(--deep-blue-light), 0 14px 30px rgba(255,255,255,0.35); }
 
-        /* GALLERY */
+        /* PRAISE & WORSHIP PAGE */
+        .praise-page { background: var(--deep-blue-dark); position: relative; padding: 120px 0 100px; }
+        .praise-page .page-bg { background-image: url('https://i.ibb.co/nq3L9XKS/IMG-9168.jpg'); opacity: 0.05; }
+        .praise-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .praise-card {
+            background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: 12px; overflow: hidden;
+            transition: all 0.4s ease; transform-style: preserve-3d; box-shadow: 0 4px 0 rgba(0,0,0,0.3), 0 8px 20px rgba(0,0,0,0.2);
+        }
+        .praise-card:hover {
+            transform: translateY(-10px) rotateX(3deg) translateZ(15px);
+            border-color: var(--sky-blue); box-shadow: 0 12px 0 rgba(0,0,0,0.3), 0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(77, 168, 218, 0.2);
+        }
+        .praise-thumb { position: relative; aspect-ratio: 16/9; overflow: hidden; }
+        .praise-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .praise-card:hover .praise-thumb img { transform: scale(1.1); }
+        .play-overlay {
+            position: absolute; inset: 0; background: rgba(5, 11, 31, 0.4); display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: opacity 0.3s ease;
+        }
+        .praise-card:hover .play-overlay { opacity: 1; }
+        .play-overlay span {
+            width: 60px; height: 60px; background: rgba(255,255,255,0.2); backdrop-filter: blur(5px);
+            border: 2px solid var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; color: white; box-shadow: 0 0 20px rgba(255,255,255,0.3);
+        }
+        .praise-info { padding: 24px; }
+        .praise-info h4 { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 1px; margin-bottom: 8px; }
+        .praise-info p { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; }
+
         .gallery-page { background: var(--deep-blue-dark); position: relative; padding: 120px 0 100px; }
         .gallery-page .page-bg { background-image: url('https://i.ibb.co/rKdz7FTd/IMG-9141.jpg'); opacity: 0.06; }
         .gallery-masonry { columns: 4; column-gap: 18px; }
@@ -288,7 +305,6 @@
         .lightbox-close { position: absolute; top: 30px; right: 30px; width: 50px; height: 50px; background: rgba(255,255,255,0.1); border: 1px solid var(--white); border-radius: 50%; color: var(--white); font-size: 1.2rem; cursor: pointer; transition: all 0.3s ease; }
         .lightbox-close:hover { background: var(--white); color: var(--deep-blue); transform: rotate(90deg); }
 
-        /* CONTACT */
         .contact-page { background: var(--deep-blue); position: relative; padding: 120px 0 100px; }
         .contact-page .page-bg { background-image: url('https://i.ibb.co/8nKjZgLp/IMG-9154.jpg'); opacity: 0.06; }
         .contact-grid { display: grid; grid-template-columns: 1fr; gap: 40px; max-width: 800px; margin: 0 auto; }
@@ -301,7 +317,6 @@
         .contact-item a { color: var(--text-secondary); text-decoration: none; transition: color 0.3s ease; font-weight: 600; }
         .contact-item a:hover { color: var(--white); }
 
-        /* FOOTER & ACTION BUTTONS */
         .footer { background: var(--deep-blue-dark); padding: 80px 0 30px; border-top: 1px solid rgba(255,255,255,0.1); position: relative; }
         .footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--white), var(--sky-blue), transparent); }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; margin-bottom: 50px; }
@@ -336,7 +351,6 @@
         .footer-powered { font-size: 0.9rem; font-weight: 700; color: var(--ice-blue); letter-spacing: 2px; text-transform: uppercase; padding: 12px 24px; background: rgba(77,168,218,0.08); border: 1px solid rgba(77,168,218,0.2); border-radius: 50px; display: inline-block; margin-top: 10px; }
         .footer-powered strong { color: var(--white); font-weight: 800; }
 
-        /* SHARE MODAL */
         .share-modal {
             position: fixed; inset: 0; background: rgba(5,11,31,0.9); backdrop-filter: blur(10px);
             z-index: 100001; display: none; align-items: center; justify-content: center; padding: 20px;
@@ -363,7 +377,6 @@
         .share-option.tiktok { background: #000000; color: white; border: 1px solid rgba(255,255,255,0.2); }
         .share-option.copy { background: linear-gradient(135deg, var(--white), var(--white-soft)); color: var(--deep-blue); grid-column: span 2; }
 
-        /* REVEAL ANIMATIONS */
         .reveal { opacity: 0; transform: translateY(40px) perspective(1000px) rotateX(5deg); transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
         .reveal.active { opacity: 1; transform: translateY(0) perspective(1000px) rotateX(0deg); }
         .reveal-left { opacity: 0; transform: translateX(-40px); transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
@@ -373,8 +386,7 @@
         .reveal-zoom { opacity: 0; transform: scale(0.9); transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
         .reveal-zoom.active { opacity: 1; transform: scale(1); }
 
-        /* RESPONSIVE */
-        @media (max-width: 1200px) { .ministries-grid { grid-template-columns: repeat(3, 1fr); } .footer-grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 1200px) { .ministries-grid { grid-template-columns: repeat(3, 1fr); } .praise-grid { grid-template-columns: repeat(2, 1fr); } .footer-grid { grid-template-columns: 1fr 1fr; } }
         @media (max-width: 992px) {
             .nav-links { display: none; } .nav-cta { display: none; } .hamburger { display: flex; }
             .about-grid { grid-template-columns: 1fr; gap: 50px; } .gallery-masonry { columns: 3; } .ministries-grid { grid-template-columns: repeat(2, 1fr); }
@@ -383,7 +395,7 @@
         @media (max-width: 768px) {
             body { font-size: 17px; } .page { padding-top: 90px; } .container { padding: 0 20px; } .nav-container { padding: 0 20px; }
             .hero h1 { font-size: 2.5rem; } .hero-buttons { flex-direction: column; } .btn-3d { width: 100%; justify-content: center; padding: 16px 30px; }
-            .ministries-grid { grid-template-columns: 1fr; } .gallery-masonry { columns: 2; } .form-row { grid-template-columns: 1fr; }
+            .ministries-grid, .praise-grid { grid-template-columns: 1fr; } .gallery-masonry { columns: 2; } .form-row { grid-template-columns: 1fr; }
             .prayer-form-wrapper { padding: 30px 20px; } .footer-grid { grid-template-columns: 1fr; gap: 30px; } .about-values { grid-template-columns: 1fr; }
             .about-image { transform: rotateY(0); }
             .action-buttons-row { flex-direction: column; width: 100%; }
@@ -396,7 +408,6 @@
     </style>
 </head>
 <body>
-    <!-- PRELOADER -->
     <div class="preloader" id="preloader">
         <div class="preloader-cube"><div class="front"></div><div class="back"></div><div class="right"></div><div class="left"></div><div class="top"></div><div class="bottom"></div></div>
         <div class="preloader-text">INITIALIZING</div>
@@ -405,7 +416,6 @@
 
     <div class="scroll-progress" id="scrollProgress"></div>
 
-    <!-- SHARE MODAL -->
     <div class="share-modal" id="shareModal">
         <div class="share-modal-content">
             <button class="close-modal" onclick="closeShareModal()">✕</button>
@@ -419,7 +429,6 @@
         </div>
     </div>
 
-    <!-- NAVIGATION -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a class="nav-logo" onclick="navigateTo('home')">
@@ -433,6 +442,7 @@
                 <li><a onclick="navigateTo('home')" data-page="home" class="active-link">Home</a></li>
                 <li><a onclick="navigateTo('about')" data-page="about">About</a></li>
                 <li><a onclick="navigateTo('ministries')" data-page="ministries">Ministry</a></li>
+                <li><a onclick="navigateTo('praise')" data-page="praise">Praise & Worship</a></li>
                 <li><a onclick="navigateTo('sermons')" data-page="sermons">Sermons</a></li>
                 <li><a onclick="navigateTo('prayer')" data-page="prayer">Prayer</a></li>
                 <li><a onclick="navigateTo('gallery')" data-page="gallery">Gallery</a></li>
@@ -443,18 +453,17 @@
         </div>
     </nav>
 
-    <!-- MOBILE MENU -->
     <div class="mobile-menu" id="mobileMenu">
         <a onclick="navigateTo('home'); closeMobile()">Home</a>
         <a onclick="navigateTo('about'); closeMobile()">About</a>
         <a onclick="navigateTo('ministries'); closeMobile()">Ministry</a>
+        <a onclick="navigateTo('praise'); closeMobile()">Praise & Worship</a>
         <a onclick="navigateTo('sermons'); closeMobile()">Sermons</a>
         <a onclick="navigateTo('prayer'); closeMobile()">Prayer</a>
         <a onclick="navigateTo('gallery'); closeMobile()">Gallery</a>
         <a onclick="navigateTo('contact'); closeMobile()">Contact</a>
     </div>
 
-    <!-- PAGE 1: HOME -->
     <div class="page active" id="home">
         <section class="hero">
             <div class="hero-grid"></div>
@@ -476,7 +485,6 @@
         </section>
     </div>
 
-    <!-- PAGE 2: ABOUT -->
     <div class="page" id="about">
         <section class="about-page">
             <div class="page-bg"></div>
@@ -484,13 +492,12 @@
                 <div class="section-header reveal">
                     <div class="section-tag">Our Story</div>
                     <h2 class="section-title">A Ministry Born of <span class="highlight">Divine Purpose</span></h2>
-                    <p class="section-subtitle">Founded by Prophetess Mother Hellen, this ministry carries the fire of the Holy Spirit to every nation.</p>
+                    <p class="section-subtitle">Founded by Prophetess Mother Hellen Hsagbata, this ministry carries the fire of the Holy Spirit to every nation.</p>
                 </div>
                 <div class="about-grid">
                     <div class="about-image-wrapper reveal-left">
                         <div class="about-image">
-                            <!-- REPLACED CROSS PLACEHOLDER WITH 3D MOVING IMAGE -->
-                            <img src="https://i.ibb.co/HLv68fB1/IMG-9140.jpg" alt="Prophetess Mother Hellen" class="about-main-image">
+                            <img src="https://i.ibb.co/HLv68fB1/IMG-9140.jpg" alt="Prophetess Mother Hellen Hsagbata" class="about-main-image">
                         </div>
                         <div class="about-image-frame"></div>
                         <div class="about-floating-card">
@@ -499,8 +506,8 @@
                         </div>
                     </div>
                     <div class="about-content reveal-right">
-                        <h3>Prophetess Mother Hellen</h3>
-                        <p>Prophetess Mother Hellen, also known as Prophetess Hsagbata, is a woman of extraordinary faith and divine calling. Through years of fervent prayer, unwavering dedication, and the undeniable power of the Holy Spirit, she has built a ministry that touches lives across nations.</p>
+                        <h3>Prophetess Mother Hellen Hsagbata</h3>
+                        <p>Prophetess Mother Hellen Hsagbata, also known as Prophetess Mother Hellen, is a woman of extraordinary faith and divine calling. Through years of fervent prayer, unwavering dedication, and the undeniable power of the Holy Spirit, she has built a ministry that touches lives across nations.</p>
                         <div class="about-well-quote">
                             She is a well — a deep, flowing well of living water. From her life, rivers of healing, deliverance, and prophetic insight spring forth to quench the thirst of souls and renew the weary. Where she ministers, dry places bloom and broken lives are made whole.
                         </div>
@@ -519,7 +526,6 @@
         </section>
     </div>
 
-    <!-- PAGE 3: MINISTRIES -->
     <div class="page" id="ministries">
         <section class="ministries-page">
             <div class="page-bg"></div>
@@ -543,7 +549,52 @@
         </section>
     </div>
 
-    <!-- PAGE 4: SERMONS -->
+    <!-- NEW PRAISE & WORSHIP PAGE -->
+    <div class="page" id="praise">
+        <section class="praise-page">
+            <div class="page-bg"></div>
+            <div class="container">
+                <div class="section-header reveal">
+                    <div class="section-tag">Experience The Grace</div>
+                    <h2 class="section-title">Praise & <span class="highlight">Worship</span></h2>
+                    <p class="section-subtitle">Immerse yourself in the powerful presence of God. Feel the grace and anointing that this ministry carries through our worship sessions.</p>
+                </div>
+                <div class="praise-grid reveal">
+                    <div class="praise-card">
+                        <div class="praise-thumb">
+                            <img src="https://i.ibb.co/YFXHnNrJ/6b3c6cce-47e3-4fb9-b2e5-589dacaddb50.jpg" alt="Worship Session">
+                            <div class="play-overlay"><span>▶</span></div>
+                        </div>
+                        <div class="praise-info">
+                            <h4>Powerful Worship Session</h4>
+                            <p>Experience the undeniable presence of the Holy Spirit.</p>
+                        </div>
+                    </div>
+                    <div class="praise-card">
+                        <div class="praise-thumb">
+                            <img src="https://i.ibb.co/qL3mpQyP/8b15948f-73fb-40fe-8d99-7ebeba2a768c-1.jpg" alt="Prophetic Praise">
+                            <div class="play-overlay"><span>▶</span></div>
+                        </div>
+                        <div class="praise-info">
+                            <h4>Prophetic Praise</h4>
+                            <p>Breaking limits through high praise and adoration.</p>
+                        </div>
+                    </div>
+                    <div class="praise-card">
+                        <div class="praise-thumb">
+                            <img src="https://i.ibb.co/Pscsw217/47095740-e747-42d3-87ae-025ea00adc20.jpg" alt="Spirit-Led Worship">
+                            <div class="play-overlay"><span>▶</span></div>
+                        </div>
+                        <div class="praise-info">
+                            <h4>Spirit-Led Worship</h4>
+                            <p>Where chains are broken and lives are transformed.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
     <div class="page" id="sermons">
         <section class="sermons-page">
             <div class="page-bg"></div>
@@ -551,14 +602,13 @@
                 <div class="coming-soon-wrapper reveal-zoom">
                     <div class="coming-soon-icon">📡</div>
                     <h2 class="coming-soon-title">Coming Soon</h2>
-                    <p class="coming-soon-text">Sermons & Teachings are being prepared. Anointed messages from Prophetess Mother Hellen will be available here soon. Stay connected and be blessed.</p>
+                    <p class="coming-soon-text">Sermons & Teachings are being prepared. Anointed messages from Prophetess Mother Hellen Hsagbata will be available here soon. Stay connected and be blessed.</p>
                     <div class="coming-soon-dots"><span></span><span></span><span></span></div>
                 </div>
             </div>
         </section>
     </div>
 
-    <!-- PAGE 5: PRAYER -->
     <div class="page" id="prayer">
         <section class="prayer-page">
             <div class="page-bg"></div>
@@ -587,7 +637,6 @@
         </section>
     </div>
 
-    <!-- PAGE 6: GALLERY -->
     <div class="page" id="gallery">
         <section class="gallery-page">
             <div class="page-bg"></div>
@@ -610,18 +659,23 @@
                     <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/dwNSTKmb/IMG-9185-Copy.jpg')"><img src="https://i.ibb.co/dwNSTKmb/IMG-9185-Copy.jpg" alt="Ministry Moment"><div class="gallery-overlay"><span>⊕</span></div></div>
                     <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/Pz35KPM9/IMG-9186-Copy.jpg')"><img src="https://i.ibb.co/Pz35KPM9/IMG-9186-Copy.jpg" alt="Ministry Moment"><div class="gallery-overlay"><span>⊕</span></div></div>
                     <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/Kpjb2C0P/IMG-9187-Copy.jpg')"><img src="https://i.ibb.co/Kpjb2C0P/IMG-9187-Copy.jpg" alt="Ministry Moment"><div class="gallery-overlay"><span>⊕</span></div></div>
+                    <!-- 6 NEW GALLERY IMAGES ADDED -->
+                    <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/qL3mpQyP/8b15948f-73fb-40fe-8d99-7ebeba2a768c-1.jpg')"><img src="https://i.ibb.co/qL3mpQyP/8b15948f-73fb-40fe-8d99-7ebeba2a768c-1.jpg" alt="Ministry Moment"><div class="gallery-overlay"><span>⊕</span></div></div>
+                    <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/xqtDHV9t/IMG-9148.jpg')"><img src="https://i.ibb.co/xqtDHV9t/IMG-9148.jpg" alt="Ministry Moment"><div class="gallery-overlay"><span>⊕</span></div></div>
+                    <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/bM9FQczH/IMG-9153-1.jpg')"><img src="https://i.ibb.co/bM9FQczH/IMG-9153-1.jpg" alt="Ministry Moment"><div class="gallery-overlay"><span>⊕</span></div></div>
+                    <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/Mx61pymV/IMG-9158.jpg')"><img src="https://i.ibb.co/Mx61pymV/IMG-9158.jpg" alt="Ministry Moment"><div class="gallery-overlay"><span>⊕</span></div></div>
+                    <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/dJ5w6BGp/IMG-9167.jpg')"><img src="https://i.ibb.co/dJ5w6BGp/IMG-9167.jpg" alt="Ministry Moment"><div class="gallery-overlay"><span>⊕</span></div></div>
+                    <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/PsQYzsPb/IMG-9170.jpg')"><img src="https://i.ibb.co/PsQYzsPb/IMG-9170.jpg" alt="Ministry Moment"><div class="gallery-overlay"><span>⊕</span></div></div>
                 </div>
             </div>
         </section>
     </div>
 
-    <!-- LIGHTBOX -->
     <div class="lightbox" id="lightbox">
         <button class="lightbox-close" onclick="closeLightbox()">✕</button>
         <div class="lightbox-content" id="lightboxContent"></div>
     </div>
 
-    <!-- PAGE 7: CONTACT -->
     <div class="page" id="contact">
         <section class="contact-page">
             <div class="page-bg"></div>
@@ -655,15 +709,12 @@
         </section>
     </div>
 
-<!-- PART 2 CONTINUES BELOW -->    <!-- ============================================
-         FOOTER (Visible on ALL pages, including Home)
-    ============================================ -->
-    <footer class="footer" id="mainFooter">
+<!-- PART 2 CONTINUES BELOW -->    <footer class="footer" id="mainFooter">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
                     <h3>Destiny Praise Chapel</h3>
-                    <p>Healing and Deliverance Ministry International. Led by Prophetess Mother Hellen. Leading people to Christ through prayer, healing, deliverance, and the transforming power of the Holy Spirit.</p>
+                    <p>Healing and Deliverance Ministry International. Led by Prophetess Mother Hellen Hsagbata. Leading people to Christ through prayer, healing, deliverance, and the transforming power of the Holy Spirit.</p>
                     <div class="footer-scripture">
                         "But whoever drinks of the water that I shall give him will never thirst..." — John 4:14
                     </div>
@@ -674,6 +725,7 @@
                         <li><a onclick="navigateTo('home')">Home</a></li>
                         <li><a onclick="navigateTo('about')">About Us</a></li>
                         <li><a onclick="navigateTo('ministries')">Ministries</a></li>
+                        <li><a onclick="navigateTo('praise')">Praise & Worship</a></li>
                         <li><a onclick="navigateTo('sermons')">Sermons</a></li>
                         <li><a onclick="navigateTo('gallery')">Gallery</a></li>
                         <li><a onclick="navigateTo('contact')">Contact</a></li>
@@ -690,7 +742,6 @@
                 </div>
             </div>
 
-            <!-- ACTION BUTTONS ROW (Repositioned above trademark) -->
             <div class="action-buttons-row">
                 <a href="https://wa.me/231775259647" target="_blank" class="action-btn whatsapp-btn">💬 WhatsApp Mother</a>
                 <button class="action-btn share-btn" onclick="openShareModal()">🔗 Share Ministry</button>
@@ -707,9 +758,6 @@
     </footer>
 
     <script>
-        /* ============================================
-           PAGE NAVIGATION SYSTEM
-        ============================================ */
         function navigateTo(pageId) {
             document.querySelectorAll('.page').forEach(function(page) { page.classList.remove('active'); });
             const targetPage = document.getElementById(pageId);
@@ -725,9 +773,6 @@
             setTimeout(function() { revealOnScroll(); }, 100);
         }
 
-        /* ============================================
-           PRELOADER & TYPING
-        ============================================ */
         window.addEventListener('load', function() {
             setTimeout(function() {
                 document.getElementById('preloader').classList.add('hidden');
@@ -738,7 +783,7 @@
         (function initTypingLogo() {
             const el = document.getElementById('typingLogo');
             if (!el) return;
-            const phrases = ['Destiny Praise Chapel', 'Healing & Deliverance', 'Mother Hellen Ministry', 'A Well of Living Water'];
+            const phrases = ['Destiny Praise Chapel', 'Healing & Deliverance', 'Mother Hellen Hsagbata', 'A Well of Living Water'];
             let phraseIndex = 0, charIndex = 0, isDeleting = false;
             function type() {
                 const current = phrases[phraseIndex];
@@ -752,9 +797,6 @@
             setTimeout(type, 1000);
         })();
 
-        /* ============================================
-           PARTICLES & SCROLL
-        ============================================ */
         (function createParticles() {
             const container = document.getElementById('particles');
             if (!container) return;
@@ -782,9 +824,6 @@
             revealOnScroll();
         });
 
-        /* ============================================
-           MOBILE MENU & REVEAL
-        ============================================ */
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobileMenu');
         hamburger.addEventListener('click', function() {
@@ -801,9 +840,6 @@
             });
         }
 
-        /* ============================================
-           FORMS & LIGHTBOX
-        ============================================ */
         function submitPrayer(e) {
             e.preventDefault();
             const btn = e.target.querySelector('.form-submit');
@@ -828,15 +864,8 @@
         document.getElementById('lightbox').addEventListener('click', function(e) { if (e.target === this) closeLightbox(); });
         document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLightbox(); });
 
-        /* ============================================
-           SHARE MODAL FUNCTIONALITY
-        ============================================ */
-        function openShareModal() {
-            document.getElementById('shareModal').classList.add('active');
-        }
-        function closeShareModal() {
-            document.getElementById('shareModal').classList.remove('active');
-        }
+        function openShareModal() { document.getElementById('shareModal').classList.add('active'); }
+        function closeShareModal() { document.getElementById('shareModal').classList.remove('active'); }
         function copyLink() {
             navigator.clipboard.writeText(window.location.href).then(function() {
                 const btn = document.querySelector('.share-option.copy');
@@ -846,10 +875,7 @@
             });
         }
 
-        /* ============================================
-           3D TILT EFFECT ON MINISTRY CARDS
-        ============================================ */
-        document.querySelectorAll('.ministry-card').forEach(function(card) {
+        document.querySelectorAll('.ministry-card, .praise-card').forEach(function(card) {
             card.addEventListener('mousemove', function(e) {
                 const rect = card.getBoundingClientRect();
                 const rotateX = ((e.clientY - rect.top) - rect.height / 2) / 10;
@@ -859,9 +885,6 @@
             card.addEventListener('mouseleave', function() { card.style.transform = ''; });
         });
 
-        /* ============================================
-           CONSOLE GREETING
-        ============================================ */
         console.log('%c✝ DESTINY PRAISE CHAPEL', 'font-size: 24px; font-weight: bold; color: #FFFFFF; font-family: monospace;');
         console.log('%cPowered by KS1 Empire Global Foundation (KS1EGF)', 'font-size: 11px; color: #7FB5E8; font-family: monospace;');
     </script>
