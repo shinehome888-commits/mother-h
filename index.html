@@ -239,9 +239,28 @@
         .form-submit { width: 100%; padding: 18px; background: linear-gradient(135deg, var(--white), var(--white-soft)); color: var(--deep-blue); border: none; border-radius: 8px; font-size: 1rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 6px 0 var(--deep-blue-light), 0 8px 20px rgba(255,255,255,0.25); }
         .form-submit:hover { transform: translateY(-3px); box-shadow: 0 9px 0 var(--deep-blue-light), 0 14px 30px rgba(255,255,255,0.35); }
 
-        /* PRAISE & WORSHIP PAGE */
+        /* PRAISE & WORSHIP PAGE - UPDATED */
         .praise-page { background: var(--deep-blue-dark); position: relative; padding: 120px 0 100px; }
         .praise-page .page-bg { background-image: url('https://i.ibb.co/nq3L9XKS/IMG-9168.jpg'); opacity: 0.05; }
+        
+        /* Small Video Showcase */
+        .video-showcase { 
+            max-width: 320px; margin: 0 auto 50px auto; perspective: 1200px; 
+            animation: floatVideo 6s ease-in-out infinite; 
+        }
+        @keyframes floatVideo { 0%, 100% { transform: translateY(0) rotateX(0deg); } 50% { transform: translateY(-10px) rotateX(2deg); } }
+        .video-wrapper { 
+            position: relative; width: 100%; border-radius: 16px; overflow: hidden; 
+            border: 1px solid var(--glass-border); 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 40px rgba(77, 168, 218, 0.15); 
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); transform-style: preserve-3d; 
+        }
+        .video-wrapper:hover { 
+            transform: scale(1.03) rotateY(-2deg) rotateX(2deg) translateZ(20px); 
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 60px rgba(77, 168, 218, 0.3); border-color: var(--sky-blue); 
+        }
+        .video-wrapper iframe { display: block; width: 100%; border: none; }
+
         .praise-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
         .praise-card {
             background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: 12px; overflow: hidden;
@@ -254,16 +273,6 @@
         .praise-thumb { position: relative; aspect-ratio: 16/9; overflow: hidden; }
         .praise-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
         .praise-card:hover .praise-thumb img { transform: scale(1.1); }
-        .play-overlay {
-            position: absolute; inset: 0; background: rgba(5, 11, 31, 0.4); display: flex; align-items: center; justify-content: center;
-            opacity: 0; transition: opacity 0.3s ease;
-        }
-        .praise-card:hover .play-overlay { opacity: 1; }
-        .play-overlay span {
-            width: 60px; height: 60px; background: rgba(255,255,255,0.2); backdrop-filter: blur(5px);
-            border: 2px solid var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem; color: white; box-shadow: 0 0 20px rgba(255,255,255,0.3);
-        }
         .praise-info { padding: 24px; }
         .praise-info h4 { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 1px; margin-bottom: 8px; }
         .praise-info p { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; }
@@ -301,7 +310,7 @@
         .lightbox { position: fixed; inset: 0; background: rgba(5,11,31,0.95); backdrop-filter: blur(20px); z-index: 100000; display: none; align-items: center; justify-content: center; padding: 40px; }
         .lightbox.active { display: flex; }
         .lightbox-content { max-width: 80%; max-height: 80%; border-radius: 12px; background: var(--bg-card); border: 1px solid var(--white); padding: 20px; text-align: center; box-shadow: 0 10px 0 rgba(0,0,0,0.4), 0 20px 50px rgba(0,0,0,0.5); }
-        .lightbox-content img { max-width: 100%; max-height: 70vh; border-radius: 8px; }
+        .lightbox-content img { max-width: 100%; max-height: 70vh; border-radius: 8px; object-fit: contain; }
         .lightbox-close { position: absolute; top: 30px; right: 30px; width: 50px; height: 50px; background: rgba(255,255,255,0.1); border: 1px solid var(--white); border-radius: 50%; color: var(--white); font-size: 1.2rem; cursor: pointer; transition: all 0.3s ease; }
         .lightbox-close:hover { background: var(--white); color: var(--deep-blue); transform: rotate(90deg); }
 
@@ -549,7 +558,7 @@
         </section>
     </div>
 
-    <!-- NEW PRAISE & WORSHIP PAGE -->
+    <!-- UPDATED PRAISE & WORSHIP PAGE -->
     <div class="page" id="praise">
         <section class="praise-page">
             <div class="page-bg"></div>
@@ -559,31 +568,39 @@
                     <h2 class="section-title">Praise & <span class="highlight">Worship</span></h2>
                     <p class="section-subtitle">Immerse yourself in the powerful presence of God. Feel the grace and anointing that this ministry carries through our worship sessions.</p>
                 </div>
+                
+                <!-- Small, Compact Video -->
+                <div class="video-showcase reveal-zoom">
+                    <div class="video-wrapper">
+                        <div style="position:relative; width:100%; height:0px; padding-bottom:177.824%">
+                            <iframe allow="fullscreen" allowfullscreen height="100%" src="https://streamable.com/e/pfqtopon" width="100%" style="border:none; width:100%; height:100%; position:absolute; left:0px; top:0px; overflow:hidden;"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pictures Grid (No Play Overlay, Clickable for Lightbox) -->
                 <div class="praise-grid reveal">
-                    <div class="praise-card">
+                    <div class="praise-card" onclick="openLightbox('https://i.ibb.co/YFXHnNrJ/6b3c6cce-47e3-4fb9-b2e5-589dacaddb50.jpg')" style="cursor: pointer;">
                         <div class="praise-thumb">
                             <img src="https://i.ibb.co/YFXHnNrJ/6b3c6cce-47e3-4fb9-b2e5-589dacaddb50.jpg" alt="Worship Session">
-                            <div class="play-overlay"><span>▶</span></div>
                         </div>
                         <div class="praise-info">
                             <h4>Powerful Worship Session</h4>
                             <p>Experience the undeniable presence of the Holy Spirit.</p>
                         </div>
                     </div>
-                    <div class="praise-card">
+                    <div class="praise-card" onclick="openLightbox('https://i.ibb.co/qL3mpQyP/8b15948f-73fb-40fe-8d99-7ebeba2a768c-1.jpg')" style="cursor: pointer;">
                         <div class="praise-thumb">
                             <img src="https://i.ibb.co/qL3mpQyP/8b15948f-73fb-40fe-8d99-7ebeba2a768c-1.jpg" alt="Prophetic Praise">
-                            <div class="play-overlay"><span>▶</span></div>
                         </div>
                         <div class="praise-info">
                             <h4>Prophetic Praise</h4>
                             <p>Breaking limits through high praise and adoration.</p>
                         </div>
                     </div>
-                    <div class="praise-card">
+                    <div class="praise-card" onclick="openLightbox('https://i.ibb.co/Pscsw217/47095740-e747-42d3-87ae-025ea00adc20.jpg')" style="cursor: pointer;">
                         <div class="praise-thumb">
                             <img src="https://i.ibb.co/Pscsw217/47095740-e747-42d3-87ae-025ea00adc20.jpg" alt="Spirit-Led Worship">
-                            <div class="play-overlay"><span>▶</span></div>
                         </div>
                         <div class="praise-info">
                             <h4>Spirit-Led Worship</h4>
@@ -659,7 +676,6 @@
                     <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/dwNSTKmb/IMG-9185-Copy.jpg')"><img src="https://i.ibb.co/dwNSTKmb/IMG-9185-Copy.jpg" alt="Ministry Moment"><div class="gallery-overlay"><span>⊕</span></div></div>
                     <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/Pz35KPM9/IMG-9186-Copy.jpg')"><img src="https://i.ibb.co/Pz35KPM9/IMG-9186-Copy.jpg" alt="Ministry Moment"><div class="gallery-overlay"><span>⊕</span></div></div>
                     <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/Kpjb2C0P/IMG-9187-Copy.jpg')"><img src="https://i.ibb.co/Kpjb2C0P/IMG-9187-Copy.jpg" alt="Ministry Moment"><div class="gallery-overlay"><span>⊕</span></div></div>
-                    <!-- 6 NEW GALLERY IMAGES ADDED -->
                     <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/qL3mpQyP/8b15948f-73fb-40fe-8d99-7ebeba2a768c-1.jpg')"><img src="https://i.ibb.co/qL3mpQyP/8b15948f-73fb-40fe-8d99-7ebeba2a768c-1.jpg" alt="Ministry Moment"><div class="gallery-overlay"><span>⊕</span></div></div>
                     <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/xqtDHV9t/IMG-9148.jpg')"><img src="https://i.ibb.co/xqtDHV9t/IMG-9148.jpg" alt="Ministry Moment"><div class="gallery-overlay"><span>⊕</span></div></div>
                     <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/bM9FQczH/IMG-9153-1.jpg')"><img src="https://i.ibb.co/bM9FQczH/IMG-9153-1.jpg" alt="Ministry Moment"><div class="gallery-overlay"><span>⊕</span></div></div>
@@ -709,7 +725,7 @@
         </section>
     </div>
 
-<!-- PART 2 CONTINUES BELOW -->    <footer class="footer" id="mainFooter">
+    <footer class="footer" id="mainFooter">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
@@ -855,7 +871,7 @@
         function openLightbox(imgSrc) {
             const lightbox = document.getElementById('lightbox');
             const content = document.getElementById('lightboxContent');
-            content.innerHTML = '<img src="' + imgSrc + '" alt="Gallery Image">';
+            content.innerHTML = '<img src="' + imgSrc + '" alt="Full View" style="object-fit: contain; max-width: 100%; max-height: 85vh; border-radius: 8px;">';
             lightbox.classList.add('active'); document.body.style.overflow = 'hidden';
         }
         function closeLightbox() {
